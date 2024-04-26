@@ -1,0 +1,42 @@
+<mat-card class="font-Poppins m-4 p-2">
+  <mat-card-header class="bg-green rounded-md ">
+    <mat-card-title>
+      <h1 class="pl-4">{{ sale.title }}</h1>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-subtitle>
+    <h2 class="text-center pt-4 text-red">Details</h2>
+    <h4 class="text-center">{{ sale.description }}</h4>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <h4>Date: </h4>
+    <p>{{ sale.date }}</p>
+    <h4>Location</h4>
+    <p>{{ sale.address }}</p>
+  </mat-card-content>
+
+  <mat-divider></mat-divider>
+
+  <mat-card-subtitle>
+    <h2 class="text-center pt-4 text-red">Items</h2>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <div class="gallery">
+      <div class="card" *ngFor="let item of sale.items">
+        <a href="#" class="card-link">
+          <h3>{{ item.name }}</h3>
+          <img [src]="item.imageUrl" alt="item image" class="rounded-md">
+        </a>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-divider></mat-divider>
+
+  <mat-card-actions class="mx-auto">
+    <button mat-raised-button color="warn" class="mr-2">Edit</button>
+    <button mat-raised-button color="warn">Delete</button>
+  </mat-card-actions>
+
+</mat-card>
