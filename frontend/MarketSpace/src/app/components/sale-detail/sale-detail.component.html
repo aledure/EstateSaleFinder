@@ -1,5 +1,5 @@
 <mat-card class="font-Poppins m-4 p-2">
-  <mat-card-header class="bg-green rounded-md ">
+  <mat-card-header class="bg-green rounded-md">
     <mat-card-title>
       <h1 class="pl-4">{{ sale.title }}</h1>
     </mat-card-title>
@@ -9,21 +9,34 @@
     <h2 class="text-center pt-4 text-red">Details</h2>
     <h4 class="text-center">{{ sale.description }}</h4>
   </mat-card-subtitle>
-  <mat-card-content>
-    <h4>Date: </h4>
-    <p>{{ sale.date }}</p>
-    <h4>Location</h4>
-    <p>{{ sale.address }}</p>
-  </mat-card-content>
+
+
+  <!---->
+
+  <mat-card-footer class="flex justify-between">
+
+    <mat-card-content>
+      <h4>Date: </h4>
+      <p>{{ sale.date | date }}</p>
+    </mat-card-content>
+
+    <mat-card-content>
+      <h4 class="pt-4">Location:</h4>
+      <p>{{ sale.address }}</p>
+    </mat-card-content>
+
+  </mat-card-footer>
+
+  <!---->
 
   <mat-divider></mat-divider>
 
-  <mat-card-subtitle>
-    <h2 class="text-center pt-4 text-red">Items</h2>
+  <mat-card-subtitle class="ml-6 mr-6">
+    <h2 class="text-center p-4 bg-green bg-opacity-60 rounded-md">Items</h2>
   </mat-card-subtitle>
   <mat-card-content>
     <div class="gallery">
-      <div class="card" *ngFor="let item of sale.items">
+      <div class="card bg-green bg-opacity-10 hover:scale-105" *ngFor="let item of sale.items">
         <a href="#" class="card-link">
           <h3>{{ item.name }}</h3>
           <img [src]="item.imageUrl" alt="item image" class="rounded-md">

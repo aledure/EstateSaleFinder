@@ -2,13 +2,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 5px;
 }
 
 .card {
   margin: 0 auto;
   margin-top: 20px;
-  width: 25%;
-  padding: 20px;
+  width: 20%;
+  padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -20,4 +21,10 @@ mat-divider {
   margin-bottom: 20px;
   width: 90%;
   align-self: center;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 40%;
+  }
 }
