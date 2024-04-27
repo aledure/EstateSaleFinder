@@ -12,9 +12,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { SaleDetailComponent } from './components/sale-detail/sale-detail.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ItemImageModalComponent } from './components/item-image-modal/item-image-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, SaleDetailComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    SaleDetailComponent,
+    ItemImageModalComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +32,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatButtonModule,
     MatCardModule,
     MatDividerModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
