@@ -22,7 +22,7 @@ const itemSchema = new mongoose.Schema(
       },
       createdBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Item',
         required: [true, 'Please Provide A User'],
       },
     },
