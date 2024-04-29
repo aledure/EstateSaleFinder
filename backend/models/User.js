@@ -1,11 +1,13 @@
+// IMPORTS
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+// USER SCHEMA
 const UserSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
-    required: [true, "Please provide name"],
+    required: [true, "Please provide username"],
     maxlength: 50,
     minlength: 3,
   },
@@ -25,11 +27,13 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+// PRESAVE PASSWORD HASHING
 UserSchema.pre("save", async function () {
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
 
+// GENERATE JWT WITH SCHEMA METHODS
 UserSchema.methods.createJWT = function () {
   return jwt.sign(
     { userId: this._id, name: this.name },
@@ -39,6 +43,8 @@ UserSchema.methods.createJWT = function () {
     }
   );
 };
+
+// COMPARE INCOMING PASSWORD TO HASHED FOR VALIDITY
 
 UserSchema.methods.comparePassword = async function (canditatePassword) {
   const isMatch = await bcrypt.compare(canditatePassword, this.password);
