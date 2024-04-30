@@ -2,6 +2,21 @@ import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export interface Sale {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  items: Item[];
+}
+
+export interface Item {
+  name: string;
+  image: string;
+  description: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })

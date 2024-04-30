@@ -19,6 +19,9 @@ import { CreateSaleComponent } from './components/create-sale/create-sale.compon
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { BrowseSalesComponent } from './components/browse-sales/browse-sales.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { FormsModule } from '@angular/forms';
     ItemImageModalComponent,
     HomeComponent,
     CreateSaleComponent,
+    LoginComponent,
+    RegisterComponent,
+    BrowseSalesComponent,
   ],
   imports: [
     BrowserModule,
