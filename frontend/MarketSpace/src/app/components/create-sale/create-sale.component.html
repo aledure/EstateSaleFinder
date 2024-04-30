@@ -1,0 +1,26 @@
+<mat-card class="font-Poppins m-4 p-2">
+  <mat-card-header class="rounded-md bg-green w-full bg-opacity-25">
+    <mat-card-title>
+      <h1 class="pl-4">Create a sale</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+
+  <mat-card-content>
+    <mat-form-field class="w-1/2">
+      <input class="border-2 p-2 w-full mt-2" matInput placeholder="Product Name" name="name" required>
+      <input class="border-2 p-2 w-full h-40 mt-2" matInput placeholder="Description" name="description" required>
+      <input class="border-2 p-2 w-full mt-2" matInput placeholder="Date" name="date" required>
+      <input class="border-2 p-2 w-full mt-2" matInput placeholder="Location" name="location" required>
+    </mat-form-field>
+
+    <mat-form-field class="w-1/2">
+      <mat-card-header>Items </mat-card-header>
+      <mat-divider></mat-divider>
+      <button mat-raised-button color="warn" class="mt-4 add-item-button">Add Item</button>
+    </mat-form-field>
+  </mat-card-content>
+  <div class="submit-button">
+    <button mat-raised-button color="warn" class="mt-4">Create Sale</button>
+  </div>
+</mat-card>
