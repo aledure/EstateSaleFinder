@@ -2,14 +2,16 @@
 const express = require('express');
 const router = express.Router();
 
+const middleware = require('./../middleware/authentication')
+
 
 
 // Controllers
-const { getSale, getSales } = require('./../controllers/sales');
+const { getSale, getAllSales, updateSale, deleteSale, createSale } = require('./../controllers/saleController');
 
 
-router.get('/', getSales);
-router.get('/:id', getSale);
+router.route('/').get(getAllSales).post(middleware, createSale)
+router.route('/:id').get(getSale).patch(updateSale).delete(deleteSale);
 
 
 

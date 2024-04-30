@@ -30,8 +30,13 @@ const saleSchema = new mongoose.Schema(
     },
     items: {
     type: String,
-    required: [true, 'Please Provide An Item To The Sale'],
+   
      },
+     createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'Please Provide A User'],
+      },
   });
 
 
