@@ -6,6 +6,7 @@ export interface Sale {
   id: string;
   title: string;
   description: string;
+  date: string;
   price: number;
   image: string;
   items: Item[];

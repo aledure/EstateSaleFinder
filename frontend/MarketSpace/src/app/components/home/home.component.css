@@ -1,0 +1,25 @@
+.container {
+  background-image: url("./../../../assets/sale-table.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-div {
+  text-align: center;
+}
+
+mat-card {
+  background-color: rgba(255, 255, 255, 0.789);
+}
