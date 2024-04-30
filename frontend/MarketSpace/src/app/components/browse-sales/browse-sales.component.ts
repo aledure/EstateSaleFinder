@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ApiService, Sale } from 'src/app/shared/services/api.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-browse-sales',
+  templateUrl: './browse-sales.component.html',
+  styleUrls: ['./browse-sales.component.css'],
 })
-export class HomeComponent {
+export class BrowseSalesComponent {
   sales: Sale[] = [];
 
   constructor(private apiService: ApiService) {}
