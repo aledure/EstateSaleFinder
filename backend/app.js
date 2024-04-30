@@ -3,6 +3,14 @@ require("express-async-errors");
 
 const express = require("express");
 const app = express();
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: 'http://localhost:4200',
+    credentials: true,
+  }),
+);
 
 // imageUpload
 const fileUpload = require("express-fileupload");
@@ -35,6 +43,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/items", itemRouter);
+
 // middleware
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

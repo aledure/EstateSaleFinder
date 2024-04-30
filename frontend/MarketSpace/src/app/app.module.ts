@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -13,6 +14,11 @@ import { SaleDetailComponent } from './components/sale-detail/sale-detail.compon
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ItemImageModalComponent } from './components/item-image-modal/item-image-modal.component';
+import { HomeComponent } from './components/home/home.component';
+import { CreateSaleComponent } from './components/create-sale/create-sale.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +26,8 @@ import { ItemImageModalComponent } from './components/item-image-modal/item-imag
     NavbarComponent,
     SaleDetailComponent,
     ItemImageModalComponent,
+    HomeComponent,
+    CreateSaleComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +40,10 @@ import { ItemImageModalComponent } from './components/item-image-modal/item-imag
     MatCardModule,
     MatDividerModule,
     MatDialogModule,
+    HttpClientModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
