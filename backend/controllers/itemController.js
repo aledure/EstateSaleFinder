@@ -2,56 +2,52 @@ const Item = require("../models/item.model");
 const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, NotFoundError } = require("../errors");
 
-const createItem = async (req, res) => {
-    // console.log(req.body);
-    const{
-        body:{title,description,photo},
-        params:{id: itemId}
-    }=req;
-    if (title === "" || description === "" || photo === "") {
+const validateFields = ({ title, description, photo }) => {
+    if (!title || !description || !photo) {
         throw new BadRequestError(
-            "title, description, and photo fields cannot be empty"
+            "Title, description, and photo fields cannot be empty"
         );
     }
-    const item = await Item.create(req.body);
-    res.status(StatusCodes.CREATED).json({ item });
 };
+
+const createItem = async (req, res) => {
+    validateFields(req.body);
+    const item = await Item.create(req.body);
+    res.status(StatusCodes.CREATED).json({ message: "Item created successfully", item });
+};
+
 const getAllItems = async (req, res) => {
     const items = await Item.find({});
     res.status(StatusCodes.OK).json(items);
 };
-const updateItem = async (req,res)=>{
-    const{
-        body:{title,description,photo},
-        params:{id: itemId}
-    }=req;
-    if (title === "" || description === "" || photo === "") {
-        throw new BadRequestError(
-            "title, description, and photo fields cannot be empty"
-        );
-    }
+
+const updateItem = async (req, res) => {
+    const { title, description, photo } = req.body;
+    validateFields({ title, description, photo });
+
+    const { id: itemId } = req.params;
     const item = await Item.findByIdAndUpdate(
-        { _id: itemId, _saleId: saleId },
-        req.body,
+        itemId,
+        { title, description, photo },
         { new: true, runValidators: true }
     );
-    if (!item) {
-        throw new NotFoundError(`No item with id ${itemId}`);
-    }
-    res.status(StatusCodes.OK).json({ item });
-}
-const deleteItem = async (req, res) => {
-    const {
-        params: { id: itemId },
-    } = req;
 
-    const item = await Item.findOneAndDelete({
-        _id: itemId,
-    });
     if (!item) {
-        throw new NotFoundError(`No item with id ${itemId}`);
+        throw new NotFoundError(`No item found with id ${itemId}`);
     }
-    res.status(StatusCodes.OK).send(`Deleted item with id ${itemId}`);
+
+    res.status(StatusCodes.OK).json({ message: "Item updated successfully", item });
+};
+
+const deleteItem = async (req, res) => {
+    const { id: itemId } = req.params;
+    const item = await Item.findOneAndDelete({ _id: itemId });
+
+    if (!item) {
+        throw new NotFoundError(`No item found with id ${itemId}`);
+    }
+
+    res.status(StatusCodes.OK).send(`Item with id ${itemId} deleted successfully`);
 };
 
 module.exports = { createItem, getAllItems, updateItem, deleteItem };
