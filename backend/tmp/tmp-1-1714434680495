@@ -1,0 +1,6 @@
+Models
+- User
+	name, username, password, profile pic, bio
+
+- Post
+	title,  body, image(null), created by, datetime, maxLength = 148, minLength = 1
