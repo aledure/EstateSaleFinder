@@ -6,10 +6,11 @@ import { CreateSaleComponent } from './components/create-sale/create-sale.compon
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BrowseSalesComponent } from './components/browse-sales/browse-sales.component';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [
   { path: 'sale', component: SaleDetailComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'create', component: CreateSaleComponent },
   { path: 'login', component: LoginComponent },
