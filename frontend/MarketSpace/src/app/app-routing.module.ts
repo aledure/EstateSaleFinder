@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'sale', component: SaleDetailComponent },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'create', component: CreateSaleComponent },
+  { path: 'create', component: CreateSaleComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'sales', component: BrowseSalesComponent },

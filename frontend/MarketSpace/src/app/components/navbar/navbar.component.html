@@ -14,8 +14,10 @@
     </span>
 
     <span class="flex items-center">
-      <a href="/sales" mat-button class="ml-2">Find a Sale</a> |
-      <a href="/login" mat-button class="ml-2">Login</a>
+      <a *ngIf="isLoggedIn" mat-button routerLink="/create" class="ml-2">Create A Sale</a> |
+      <a href="/sales" mat-button>Find a Sale</a> |
+      <a *ngIf="!isLoggedIn" mat-button routerLink="/login">Login</a>
+      <a *ngIf="isLoggedIn" mat-button (click)="logout()">Logout</a>
     </span>
   </mat-toolbar-row>
 </mat-toolbar>
