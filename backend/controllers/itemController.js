@@ -1,9 +1,10 @@
 const Item = require("../models/item.model");
 const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, NotFoundError } = require("../errors");
+const {uploadItemImage} = require('./../lib/uploadImage')
 
-const validateFields = ({ title, description, photo }) => {
-    if (!title || !description || !photo) {
+const validateFields = ({ title, description}) => {
+    if (!title || !description) {
         throw new BadRequestError(
             "Title, description, and photo fields cannot be empty"
         );
@@ -12,7 +13,13 @@ const validateFields = ({ title, description, photo }) => {
 
 const createItem = async (req, res) => {
     validateFields(req.body);
-    const item = await Item.create(req.body);
+    const {saleId} = req.params;
+
+    console.log(saleId)
+
+    const imageUrl = await uploadItemImage(req.files)
+
+    const item = await Item.create({photo: imageUrl, saleId, ...req.body});
     res.status(StatusCodes.CREATED).json({ message: "Item created successfully", item });
 };
 

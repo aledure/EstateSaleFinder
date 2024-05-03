@@ -20,6 +20,11 @@ const itemSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please Provide A Photo'],
     },
+    saleId:{
+      type: String,
+      required: [true]
+    },
+
   },
   {
     timestamps: true,
