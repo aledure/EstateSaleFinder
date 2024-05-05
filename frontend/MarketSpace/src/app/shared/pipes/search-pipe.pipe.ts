@@ -1,12 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'searchPipe'
+  name: 'search'
 })
-export class SearchPipePipe implements PipeTransform {
+export class SearchPipe implements PipeTransform {
+  transform(sales: any[], searchTerm: string): any[] {
+    if (!sales || !searchTerm) {
+      return sales;
+    }
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+    searchTerm = searchTerm.toLowerCase();
+    return sales.filter(sale =>
+      sale.title.toLowerCase().includes(searchTerm) ||
+      sale.description.toLowerCase().includes(searchTerm)
+    );
   }
-
 }
+
