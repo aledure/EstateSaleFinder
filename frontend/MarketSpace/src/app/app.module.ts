@@ -24,7 +24,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { BrowseSalesComponent } from './components/browse-sales/browse-sales.component';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { CookieService } from 'ngx-cookie-service';
-import { SearchPipePipe } from './shared/pipes/search-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { SearchPipePipe } from './shared/pipes/search-pipe.pipe';
     LoginComponent,
     RegisterComponent,
     BrowseSalesComponent,
-    SearchPipePipe,
   ],
   imports: [
     BrowserModule,
