@@ -1,0 +1,15 @@
+<div *ngIf="isVerified; else verifyTemplate">
+  <h2>Email verified successfully!</h2>
+  <!-- Add any additional content or navigation links -->
+</div>
+
+<ng-template #verifyTemplate>
+  <div *ngIf="error; else verifyForm">
+    <h2>{{ error }}</h2>
+  </div>
+
+  <ng-template #verifyForm>
+    <h2>Verifying your email...</h2>
+    <!-- Add a loading indicator or any additional content -->
+  </ng-template>
+</ng-template>

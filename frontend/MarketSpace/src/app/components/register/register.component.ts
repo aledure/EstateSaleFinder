@@ -15,7 +15,6 @@ export class RegisterComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
-
   private authSubscription = new Subscription();
 
   constructor(
@@ -28,16 +27,23 @@ export class RegisterComponent {
     if (this.registerForm.invalid) return;
 
     const formValue = this.registerForm.getRawValue() as CreateUser;
-
     if (!formValue) return;
 
     this.authSubscription.add(
-      this.authService.register(formValue).subscribe((response) => {
-        const { user } = response;
+      this.authService.register(formValue).subscribe(
+        (response) => {
+          const { user } = response;
+          this.authService.setUser(user);
 
-        this.authService.setUser(user);
-        this.router.navigate(['/', 'home']);
-      })
+          // Navigate to the home page or show a success message
+          // After registration, the user will be redirected to the verify-email page
+          // when they click the verification link in the email
+          this.router.navigate(['/verify-email']);
+        },
+        (error) => {
+          console.error(error);
+        }
+      )
     );
   }
 
