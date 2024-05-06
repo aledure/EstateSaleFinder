@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 export interface Sale {
   id: string;
+  _id: string;
   title: string;
   description: string;
   date: string;
@@ -24,7 +25,7 @@ export interface Item {
 export class ApiService {
   private API_URL = environment.API_URL;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getSales() {
     return this.http.get(`${this.API_URL}/sales`);
@@ -32,5 +33,9 @@ export class ApiService {
 
   getSaleById(id: string) {
     return this.http.get(`${this.API_URL}/sales/${id}`);
+  }
+
+  searchSaleByTitle(title: string) {
+      return this.http.get(`${this.API_URL}/sales/search/${title}`);
   }
 }
