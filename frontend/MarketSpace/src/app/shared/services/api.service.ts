@@ -35,7 +35,7 @@ export class ApiService {
     return this.http.get(`${this.API_URL}/sales/${id}`);
   }
 
-  createSale(saleData: any): Observable<any> {
+  createSale(saleData: FormData): Observable<any> {
     return this.http.post<any>(`${this.API_URL}/sales`, saleData);
   }
 }

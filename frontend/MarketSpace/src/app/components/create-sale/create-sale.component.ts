@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../shared/services/api.service';
 import { UserService, User } from 'src/app/shared/services/user.service';
 import { Subject } from 'rxjs';
@@ -27,6 +27,8 @@ export class CreateSaleComponent implements OnInit, OnDestroy {
       description: ['', Validators.required],
       date: ['', Validators.required],
       address: ['', Validators.required],
+      image: [null, Validators.required],
+      items: this.fb.array([]),
     });
 
     this.userService.isAuthenticated().subscribe((isAuthenticated) => {
@@ -46,6 +48,23 @@ export class CreateSaleComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  onImageSelected(event: any) {
+    const file = event.target.files[0];
+    this.createSaleForm.patchValue({
+      image: file,
+    });
+  }
+
+  addItem() {
+    const items = this.createSaleForm.get('items') as FormArray;
+    items.push(
+      this.fb.group({
+        itemName: ['', Validators.required],
+        itemDescription: ['', Validators.required],
+      })
+    );
   }
 
   onSubmit() {

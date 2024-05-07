@@ -7,15 +7,15 @@
     </mat-card-header>
     <mat-divider></mat-divider>
 
-    <mat-card-content>
-      <div class="w-1/2">
+    <mat-card-content class="p-3 mt-4">
+      <div class="w-1/2 float-start">
         <input formControlName="title" class="border-2 p-2 w-full mt-2" placeholder="Product Name" required>
         <input formControlName="description" class="border-2 p-2 w-full h-40 mt-2" placeholder="Description" required>
         <input formControlName="date" class="border-2 p-2 w-full mt-2" placeholder="Date" required>
         <input formControlName="address" class="border-2 p-2 w-full mt-2" placeholder="Address" required>
       </div>
 
-      <div class="w-1/2">
+      <div class="w-1/2 float-end">
         <mat-card-header>Items </mat-card-header>
         <mat-divider></mat-divider>
         <button type="button" mat-raised-button color="warn" class="mt-4 add-item-button">Add
