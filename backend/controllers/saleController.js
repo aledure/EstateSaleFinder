@@ -73,7 +73,7 @@ const deleteSale = async (req, res) => {
 };
 
 const searchSaleByTitle = async (req, res) => {
-    const { title } = req.query;
+    const { title } = req.params;
     if (!title) {
         throw new BadRequestError("Title query parameter is required for search");
     }
