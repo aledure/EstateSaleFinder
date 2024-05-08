@@ -9,13 +9,13 @@ import { BrowseSalesComponent } from './components/browse-sales/browse-sales.com
 import { AuthGuard } from './shared/guard/auth.guard';
 
 const routes: Routes = [
-  { path: 'sale', component: SaleDetailComponent },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'create', component: CreateSaleComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'sales', component: BrowseSalesComponent },
+  { path: 'sale/:id', component: SaleDetailComponent },
 ];
 
 @NgModule({

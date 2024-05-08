@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 export interface Sale {
   id: string;
+  _id: string;
   title: string;
   description: string;
   address: string;
@@ -34,8 +35,11 @@ export class ApiService {
   getSaleById(id: string) {
     return this.http.get(`${this.API_URL}/sales/${id}`);
   }
+  searchSaleByTitle(title: string) {
+    return this.http.get(`${this.API_URL}/sales/search/${title}`);
+  }
 
-  createSale(saleData: any): Observable<any> {
+  createSale(saleData: FormData): Observable<any> {
     return this.http.post<any>(`${this.API_URL}/sales`, saleData);
   }
 }
