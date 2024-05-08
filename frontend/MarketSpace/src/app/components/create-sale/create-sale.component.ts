@@ -4,6 +4,8 @@ import { ApiService } from '../../shared/services/api.service';
 import { UserService, User } from 'src/app/shared/services/user.service';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { AddItemFormComponent } from '../add-item-form/add-item-form.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-sale',
@@ -20,7 +22,8 @@ export class CreateSaleComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private apiService: ApiService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -73,5 +76,11 @@ export class CreateSaleComponent implements OnInit, OnDestroy {
     } else {
       console.error('User data not available');
     }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddItemFormComponent, {
+      width: '400px',
+    });
   }
 }
