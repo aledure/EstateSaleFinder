@@ -1,0 +1,11 @@
+<mat-card>
+  <div class="flex justify-center align-middle w-100 mx-auto flex-col">
+    <mat-card-title class="w-100 mx-auto bg-green p-2 bg-opacity-15 title-center">Add Item</mat-card-title>
+    <mat-card-content class="pt-2">
+      <input formControlName="name" class="border-2 p-2 w-full mt-2" placeholder="Product Name" required>
+      <input formControlName="description" class="border-2 p-2 w-full h-40 mt-2" placeholder="Description" required>
+      <input type="file" formControlName="image" accept="image/*" class="mt-2">
+      <button type="submit" mat-raised-button color="warn" class="mt-4">Add</button>
+    </mat-card-content>
+  </div>
+</mat-card>
