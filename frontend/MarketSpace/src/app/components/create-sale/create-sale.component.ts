@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../shared/services/api.service';
 import { UserService, User } from 'src/app/shared/services/user.service';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-sale',
@@ -18,7 +19,8 @@ export class CreateSaleComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -62,6 +64,7 @@ export class CreateSaleComponent implements OnInit, OnDestroy {
       this.apiService.createSale(saleData).subscribe(
         (response) => {
           console.log('Sale created successfully:', response);
+          this.router.navigate(['/home']);
         },
         (error) => {
           console.error('Error creating sale:', error);
