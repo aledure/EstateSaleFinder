@@ -55,7 +55,7 @@ const uploadItemImage = async (req, res) => {
             folder: "estateSaleFinder",
         }
     );
-    fs.unlinkSync(req.files.image.tempFilePath);
+    fs.unlink(req.files.image.tempFilePath);
     return res
         .status(StatusCodes.OK)
         .json({ image: { src: result.secure_url } });
