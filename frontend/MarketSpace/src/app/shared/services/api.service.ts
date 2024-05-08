@@ -1,15 +1,16 @@
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface Sale {
   id: string;
   _id: string;
   title: string;
   description: string;
-  date: string;
-  price: number;
+  address: string;
   image: string;
+  date: string;
   items: Item[];
 }
 
@@ -35,6 +36,10 @@ export class ApiService {
     return this.http.get(`${this.API_URL}/sales/${id}`);
   }
 
+  createSale(saleData: any): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/sales`, saleData);
+  }
+  
   searchSaleByTitle(title: string) {
       return this.http.get(`${this.API_URL}/sales/search/${title}`);
   }

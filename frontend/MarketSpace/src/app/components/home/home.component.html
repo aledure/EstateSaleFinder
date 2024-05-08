@@ -14,15 +14,16 @@
 
 <div class="w-100 p-2 text-center pb-6 font-Poppins">
   <h1 class="p-4 w-100 bg-green rounded-t-md shadow-lg">Recently posted sales:</h1>
-  <mat-card *ngFor="let sale of sales" class="w-1/4 m-2 shadow-black shadow-md">
-    <h3 class="pt-2">{{sale.title}}</h3>
-    <div>
-      <img src="{{ sale.image }}">
-    </div>
-    <p>{{sale.description}}</p>
-    <p>{{sale.date | date}}</p>
-    <a href="/sale" mat-raised-button color="warn">View</a>
-  </mat-card>
+  <div class="flex flex-row">
+    <mat-card *ngFor="let sale of sales" class="w-1/4 h-52 m-2 shadow-black shadow-md flex flex-column justify-between">
+      <mat-card-title class="text-center bg-green bg-opacity-15">
+        <h3 class="pt-3 text-red font-bold">{{sale.title}}</h3>
+      </mat-card-title>
+      <p>{{sale.description}}</p>
+      <p>{{sale.date | date}}</p>
+      <a href="/sale" mat-raised-button color="warn">View</a>
+    </mat-card>
+  </div>
 </div>
 
 <div class="bg-red h-10">
