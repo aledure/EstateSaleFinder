@@ -4,7 +4,7 @@
     <p class="text-center font-Poppins">Find estate sales, tag sales, auctions, moving sales, and other types of
       estate
       liquidations.</p>
-    <div class="d-flex justify-content-center w-100 mx-auto form-div mt-4">
+    <div class="flex justify-content-center w-100 mx-auto form-div mt-4">
       <input matInput placeholder="Search for sales" class="border-2 rounded-md p-1 w-100 text-center">
       <button mat-raised-button color="warn" class="ml-2">Search</button>
     </div>
@@ -14,14 +14,15 @@
 
 <div class="w-100 p-2 text-center pb-6 font-Poppins">
   <h1 class="p-4 w-100 bg-green rounded-t-md shadow-lg">Recently posted sales:</h1>
-  <div class="flex flex-row">
-    <mat-card *ngFor="let sale of sales" class="w-1/4 h-52 m-2 shadow-black shadow-md flex flex-column justify-between">
+  <div class="grid grid-cols-4">
+    <mat-card *ngFor="let sale of sales.slice(0, 4)"
+      class="h-52 m-2 shadow-black shadow-md flex flex-column justify-between">
       <mat-card-title class="text-center bg-green bg-opacity-15">
         <h3 class="pt-3 text-red font-bold">{{sale.title}}</h3>
       </mat-card-title>
       <p>{{sale.description}}</p>
       <p>{{sale.date | date}}</p>
-      <a href="/sale" mat-raised-button color="warn">View</a>
+      <a href="/sale/{{sale._id}}" mat-raised-button color="warn">View</a>
     </mat-card>
   </div>
 </div>
