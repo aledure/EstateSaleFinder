@@ -18,3 +18,4 @@ describe('BrowseSalesComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
