@@ -1,0 +1,38 @@
+<div class="min-h-screen grid place-content-center bg-white">
+  <div
+    class="bg-gray-50 grid place-content-center min-h-[70vh] min-w-[70vh] max-h-[70vh] max-w-[70vh] rounded-2xl shadow-2xl"
+  >
+    <div
+      class="grid place-content-center"
+      *ngIf="isVerified; else verifyTemplate"
+    >
+      <h2>Email verified successfully!</h2>
+    </div>
+
+    <ng-template #verifyTemplate>
+      <div *ngIf="error; else verifyForm">
+        <h2>{{ error }}</h2>
+      </div>
+
+      <div class="grid place-content-center">
+        <ng-template #verifyForm>
+          <br />
+          <p class="grid place-content-center font-normal text-5xl text-center">
+            Verify Your Email!
+          </p>
+          <hr />
+          <p class="grid place-content-center text-2xl text-center">
+            We sent an email to {{ userEmail }}!
+          </p>
+          <br />
+          <p class="grid place-content-center flex-wrap text-2xl text-center">
+            Please click on the link in the email.
+          </p>
+          <p class="grid place-content-center flex-wrap text-center text-2xl">
+            If you don't see it, you may have to check your spam folder.
+          </p>
+        </ng-template>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -18,6 +18,10 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  onSwitchAuthMode() {
+    this.isLoggedIn = !this.isLoggedIn;
+  }
+
   logout() {
     this.userService.logout();
     this.router.navigate(['/login']);

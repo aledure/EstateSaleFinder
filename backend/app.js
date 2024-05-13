@@ -7,9 +7,9 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: 'http://localhost:4200',
+    origin: "http://localhost:4200",
     credentials: true,
-  }),
+  })
 );
 
 // imageUpload
@@ -28,7 +28,7 @@ const authenticateUser = require("./middleware/authentication");
 const authRouter = require("./routes/auth");
 const itemRouter = require("./routes/itemRoute");
 const saleRouter = require("./routes/sale.route");
-
+const verifyEmailRouter = require("./routes/verifyEmail");
 
 // error handler
 const notFoundMiddleware = require("./middleware/not-found");
@@ -46,6 +46,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/items", itemRouter);
 app.use("/api/v1/sales", saleRouter);
+app.use("/api/verify-email", verifyEmailRouter);
 
 // middleware
 app.use(notFoundMiddleware);

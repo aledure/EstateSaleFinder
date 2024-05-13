@@ -8,6 +8,8 @@ import { environment } from 'src/app/environments/environment';
 export interface User {
   id: number;
   username: string;
+  email: string;
+  emailVerified: boolean;
 }
 
 export interface CreateUser {
@@ -36,8 +38,8 @@ export class UserService {
     private router: Router
   ) {}
 
-  setUser({ id, username }: User) {
-    this.user$.next({ id, username });
+  setUser({ id, username, email, emailVerified }: User) {
+    this.user$.next({ id, username, email, emailVerified });
   }
 
   register({ username, email, password }: CreateUser) {
