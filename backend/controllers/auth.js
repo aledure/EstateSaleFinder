@@ -15,7 +15,7 @@ const sendVerificationEmail = async (email, verificationToken) => {
     subject: "MarketSpace Email Verification",
     html: `
       <p>Please click the following link to verify your email address:</p>
-      <a href="${process.env.FRONTEND_URL}/verify-email?token=${verificationToken}">Verify Email</a>
+      <a href="${process.env.FRONTEND_URL}api/verify-email?token=${verificationToken}">Verify Email</a>
     `,
   };
 
@@ -46,18 +46,26 @@ const register = async (req, res) => {
 // Email Verificaiton Route Handler
 
 const verifyEmail = async (req, res) => {
+  console.log("verifyEmail called");
   const { token } = req.query;
   const user = await User.findOne({ verificationToken: token });
 
   if (!user) {
-    throw new BadRequestError("Invalid verification token");
+    console.log("No user found with the provided verification token");
+    return res.status(400).json({ message: "Invalid verification token" });
   }
+
+  console.log("User before update:", user);
 
   user.emailVerified = true;
   user.verificationToken = null;
-  await user.save();
+  const updatedUser = await user.save();
 
-  res.status(StatusCodes.OK).json({ message: "Email verified successfully" });
+  console.log("User after update:", updatedUser);
+
+  res
+    .status(200)
+    .json({ message: "Email verified successfully", user: updatedUser });
 };
 
 // Login Controller

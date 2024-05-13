@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmailVerificationService } from 'src/app/shared/services/email-verification.service';
+import { UserService } from 'src/app/shared/services/user.service'; // Import UserService
 
 @Component({
   selector: 'app-verify-email',
@@ -11,17 +12,20 @@ export class VerifyEmailComponent implements OnInit {
   verificationToken: string | null = null;
   isVerified = false;
   error: string | null = null;
+  userEmail: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private emailVerificationService: EmailVerificationService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      this.verificationToken = params['token'];
-      if (this.verificationToken) {
+      const verificationToken = params['token'];
+      if (verificationToken) {
+        this.verificationToken = verificationToken;
         this.verifyEmail();
       }
     });
@@ -32,8 +36,13 @@ export class VerifyEmailComponent implements OnInit {
       this.emailVerificationService
         .verifyEmail(this.verificationToken)
         .subscribe(
-          () => {
-            this.isVerified = true;
+          (response: any) => {
+            if (response.status === 200) {
+              this.updateUserData(response.body.user);
+              this.redirectToHome(response.body.user.email);
+            } else {
+              this.error = response.body.message;
+            }
           },
           (error) => {
             this.error = error.error.message;
@@ -41,7 +50,21 @@ export class VerifyEmailComponent implements OnInit {
         );
     }
   }
-  redirectToHome() {
-    this.router.navigate(['/home']);
+
+  updateUserData(updatedUser: any) {
+    this.userService.setUser({
+      id: updatedUser.id,
+      username: updatedUser.username,
+      email: updatedUser.email,
+      emailVerified: updatedUser.emailVerified,
+    });
+  }
+
+  redirectToHome(email: string | null) {
+    if (email) {
+      this.router.navigate(['/home'], { queryParams: { email: email } });
+    } else {
+      this.router.navigate(['/home']);
+    }
   }
 }

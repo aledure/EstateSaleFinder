@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService, CreateUser } from 'src/app/shared/services/user.service';
 
@@ -35,10 +35,10 @@ export class RegisterComponent {
           const { user } = response;
           this.authService.setUser(user);
 
-          // Navigate to the home page or show a success message
-          // After registration, the user will be redirected to the verify-email page
-          // when they click the verification link in the email
-          this.router.navigate(['/verify-email']);
+          const navigationExtras: NavigationExtras = {
+            queryParams: { email: user.email },
+          };
+          this.router.navigate(['/verify-email'], navigationExtras);
         },
         (error) => {
           console.error(error);
