@@ -18,21 +18,35 @@ const login = async (req, res) => {
   if (!email || !password) {
     throw new BadRequestError("Please provide email and password");
   }
+
+  console.log("Searching for user with email:", email);
+
   // Find User
   const user = await User.findOne({ email });
+
+  console.log("User found:", user);
+
   if (!user) {
     throw new UnauthenticatedError("Invalid Credentials");
   }
+
   // Compare Password
   const isPasswordCorrect = await user.comparePassword(password);
+
   if (!isPasswordCorrect) {
     throw new UnauthenticatedError("Invalid Credentials");
   }
-  // Created Token
+
   const token = user.createJWT();
-  res
-    .status(StatusCodes.OK)
-    .json({ user: { name: user.name }, id: { userID: user._id }, token });
+
+  res.status(StatusCodes.OK).json({
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email
+    },
+    token
+  });
 };
 
 module.exports = {

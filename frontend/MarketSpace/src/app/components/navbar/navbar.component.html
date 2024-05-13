@@ -14,7 +14,8 @@
     </span>
 
     <span class="flex items-center">
-      <a *ngIf="isLoggedIn" mat-button routerLink="/create" class="ml-2">Create A Sale</a> |
+      <a *ngIf="isLoggedIn" mat-button routerLink="/create" class="ml-2">Create A Sale</a>
+      <span *ngIf="isLoggedIn"> | </span>
       <a href="/sales" mat-button>Find a Sale</a> |
       <a *ngIf="!isLoggedIn" mat-button routerLink="/login">Login</a>
       <a *ngIf="isLoggedIn" mat-button (click)="logout()">Logout</a>
