@@ -10,7 +10,6 @@ import { AuthGuard } from './shared/guard/auth.guard';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 const routes: Routes = [
-  { path: 'sale', component: SaleDetailComponent },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'create', component: CreateSaleComponent, canActivate: [AuthGuard] },
@@ -18,6 +17,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'sales', component: BrowseSalesComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
+  { path: 'sale/:id', component: SaleDetailComponent },
 ];
 
 @NgModule({

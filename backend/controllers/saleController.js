@@ -66,14 +66,15 @@ const deleteSale = async (req, res) => {
     const sale = await Sale.findOneAndDelete({ _id: saleId });
 
     if (!sale) {
-        throw new NotFoundError(`No sale found with id ${saleId}`);
+        return res.status(StatusCodes.NOT_FOUND).json({ error: `No sale found with id ${saleId}` });
     }
 
-    res.status(StatusCodes.OK).send(`Sale with id ${saleId} deleted successfully`);
+    return res.status(StatusCodes.OK).json({ message: `Sale with id ${saleId} deleted successfully` });
 };
 
+
 const searchSaleByTitle = async (req, res) => {
-    const { title } = req.query;
+    const { title } = req.params;
     if (!title) {
         throw new BadRequestError("Title query parameter is required for search");
     }

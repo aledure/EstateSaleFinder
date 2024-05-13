@@ -33,7 +33,10 @@ export class LoginComponent {
         const { user } = response;
 
         this.authService.setUser(user);
-        this.router.navigate(['/', 'home']);
+        this.router.navigate(['home']);
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       })
     );
   }

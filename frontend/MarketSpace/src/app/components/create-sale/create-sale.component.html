@@ -1,26 +1,29 @@
-<mat-card class="font-Poppins m-4 p-2">
-  <mat-card-header class="rounded-md bg-green w-full bg-opacity-25">
-    <mat-card-title>
-      <h1 class="pl-4">Create a sale</h1>
-    </mat-card-title>
-  </mat-card-header>
-  <mat-divider></mat-divider>
+<form [formGroup]="createSaleForm" (ngSubmit)="onSubmit()">
+  <mat-card class="font-Poppins m-4 p-2">
+    <mat-card-header class="rounded-md bg-green w-full bg-opacity-25">
+      <mat-card-title>
+        <h1 class="pl-4">Create a sale</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
 
-  <mat-card-content>
-    <mat-form-field class="w-1/2">
-      <input class="border-2 p-2 w-full mt-2" matInput placeholder="Product Name" name="name" required>
-      <input class="border-2 p-2 w-full h-40 mt-2" matInput placeholder="Description" name="description" required>
-      <input class="border-2 p-2 w-full mt-2" matInput placeholder="Date" name="date" required>
-      <input class="border-2 p-2 w-full mt-2" matInput placeholder="Location" name="location" required>
-    </mat-form-field>
+    <mat-card-content class="p-3 mt-4">
+      <div class="w-1/2 float-start">
+        <input formControlName="title" class="border-2 p-2 w-full mt-2" placeholder="Sale Title" required>
+        <input formControlName="description" class="border-2 p-2 w-full h-40 mt-2" placeholder="Description" required>
+        <input formControlName="date" class="border-2 p-2 w-full mt-2" placeholder="Date" required>
+        <input formControlName="address" class="border-2 p-2 w-full mt-2" placeholder="Address" required>
+      </div>
 
-    <mat-form-field class="w-1/2">
-      <mat-card-header>Items </mat-card-header>
-      <mat-divider></mat-divider>
-      <button mat-raised-button color="warn" class="mt-4 add-item-button">Add Item</button>
-    </mat-form-field>
-  </mat-card-content>
-  <div class="submit-button">
-    <button mat-raised-button color="warn" class="mt-4">Create Sale</button>
-  </div>
-</mat-card>
+      <div class="w-1/2 float-end">
+        <mat-card-header>Items </mat-card-header>
+        <mat-divider></mat-divider>
+        <button type="button" (click)="openDialog()" mat-raised-button color="warn" class="mt-4 add-item-button">Add
+          Item</button>
+      </div>
+    </mat-card-content>
+    <div class="submit-button">
+      <button type="submit" mat-raised-button color="warn" class="mt-4">Create Sale</button>
+    </div>
+  </mat-card>
+</form>

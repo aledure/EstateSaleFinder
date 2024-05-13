@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { SALES } from 'src/app/shared/sale';
 import { MatDialog } from '@angular/material/dialog';
 import { ItemImageModalComponent } from '../item-image-modal/item-image-modal.component';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/app/shared/services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sale-detail',
@@ -9,14 +11,46 @@ import { ItemImageModalComponent } from '../item-image-modal/item-image-modal.co
   styleUrls: ['./sale-detail.component.css'],
 })
 export class SaleDetailComponent {
-  sale = SALES[0];
+  sale = {
+    title: '',
+    description: '',
+    address: '',
+    date: '',
+    items: [{ name: '', imageUrl: '' }],
+  };
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id') ?? '';
+
+    this.apiService.getSaleById(id).subscribe((data: any) => {
+      this.sale = data;
+    });
+  }
 
   openItemModal(imageUrl: string): void {
     this.dialog.open(ItemImageModalComponent, {
       data: { imageUrl },
       panelClass: 'full-screen-modal',
     });
+  }
+
+  deleteSale() {
+    const id = this.route.snapshot.paramMap.get('id') ?? '';
+    this.apiService.deleteSale(id).subscribe(
+      () => {
+        console.log('Sale deleted successfully');
+        this.router.navigate(['/sales']);
+      },
+      (error) => {
+        console.error('Error deleting sale:', error);
+      }
+    );
   }
 }
