@@ -15,14 +15,17 @@ export class BrowseSalesComponent {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private http: HttpClient) { }
+    private http: HttpClient
+  ) {}
 
   searchSales() {
     if (this.searchTerm) {
-      this.apiService.searchSaleByTitle(this.searchTerm).subscribe((data: any) => {
-        console.log(data);
-        this.sales = data;
-      });
+      this.apiService
+        .searchSaleByTitle(this.searchTerm)
+        .subscribe((data: any) => {
+          console.log(data);
+          this.sales = data;
+        });
     } else {
       this.getSales();
     }
@@ -33,9 +36,10 @@ export class BrowseSalesComponent {
   }
 
   getSales() {
-     this.apiService.getSales().subscribe((data: any) => {
+    this.apiService.getSales().subscribe((data: any) => {
       console.log(data);
       this.sales = data;
     });
   }
 }
+

@@ -1,26 +1,36 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-  padding: 20px;
-  justify-content: space-around;
+  padding: 25px;
+  justify-content: flex;
+  background-image: url(https://images.unsplash.com/photo-1516160008198-e55b603e5da9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .card {
   border: 1px solid #161616;
   border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  flex: 0 0 calc(25% - 20px);
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  margin: 25px;
+  background-color: aliceblue;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-img-top {
   width: 100%;
-  height: auto;
+  height: 65%;
   border: 1px solid #161616;
   border-radius: 5px;
-  padding: auto;
-
+  object-fit: cover;
+  margin-bottom: 5px;
 }
 
 input[type="text"] {
@@ -33,13 +43,9 @@ input[type="text"] {
 h1 {
   text-align: center;
   padding-top: 20px;
-}
-
-.container .card {
-  background-color: white;
-  width: 100%;
-  height: auto;
-
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 @media (min-width: 100px) {
@@ -49,38 +55,45 @@ h1 {
 }
 
 .card-title {
-  width: 100%;
+  width: auto;
   height: auto;
-  border: 1px solid #161616;
-  border-radius: 5px;
-
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .card-text {
-  width: 100%;
+  width: auto;
   height: auto;
-  border: 1px solid #161616;
-  border-radius: 5px;
-
-
+  padding: auto;
 }
 
 .btn-primary {
-  width: 100%;
+  width: 35%;
   height: auto;
   border: 1px solid #161616;
   border-radius: 5px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
 }
 
 .btn-primary:hover {
-  background-color: #0ddd06; /* Change to the color you want when hovering */
-  color: rgb(12, 12, 12); /* Change text color when hovering */
+  background-color: #60f326;
+  color: rgb(12, 12, 12);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
 }
 
 .btn-primary:active {
-  background-color: #ee37d6; /* Change to the color you want when button is clicked */
-  color: rgb(12, 12, 12); /* Change text color when button is clicked */
+  background-color: #5e5d5d;
+  color: rgb(12, 12, 12);
 }
 
-
-
+.card-body {
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center; 
+  display: flex;
+}

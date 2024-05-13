@@ -1,4 +1,4 @@
-<!--WORK IN PROGRESS, (TESTING)-->
+
 <h1>All Sales</h1>
 
 <input type="text" class="form-control bg-white p-2 w-1/2 font-Poppins" placeholder="Search Sales By Title" [(ngModel)]="searchTerm" (input)="searchSales()">
@@ -6,12 +6,12 @@
 <br>
 
 <div class="container bg-green bg-opacity-15 font-Poppins">
-  <div class="row">
-    <div class="col-md-4" *ngFor="let sale of sales">
+   <div class="flex flex-wrap justify-around">
+    <div class="col-span-1" *ngFor="let sale of sales">
       <div class="card">
+          <h5 class="card-title">{{sale.title}}</h5>
         <img class="card-img-top" src="{{sale.image}}" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">{{sale.title}}</h5>
           <p class="card-text">{{sale.description}}</p>
           <a href="/sale/{{sale._id}}" class="btn btn-primary">View Sale</a>
         </div>
