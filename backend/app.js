@@ -26,6 +26,7 @@ const connectDB = require("./db/connect");
 const authenticateUser = require("./middleware/authentication");
 // routers
 const authRouter = require("./routes/auth");
+const userRouter = require("./routes/userRoute")
 const itemRouter = require("./routes/itemRoute");
 const saleRouter = require("./routes/sale.route");
 const verifyEmailRouter = require("./routes/verifyEmail");
@@ -43,6 +44,7 @@ app.get("/", (req, res) => {
   res.send("<h1>MarketSpace</h1>");
 });
 
+app.use("/api/v1/user", userRouter);
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/items", itemRouter);
 app.use("/api/v1/sales", saleRouter);
