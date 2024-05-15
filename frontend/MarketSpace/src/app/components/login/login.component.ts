@@ -30,13 +30,15 @@ export class LoginComponent {
 
     this.authSubscription.add(
       this.authService.login(formValue).subscribe((response) => {
-        const { user } = response;
+        if (typeof response !== 'boolean') {
+          const { user } = response;
 
-        this.authService.setUser(user);
-        this.router.navigate(['home']);
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+          this.authService.setUser(user);
+          this.router.navigate(['home']);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        }
       })
     );
   }

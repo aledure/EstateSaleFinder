@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface Sale {
   id: string;
@@ -15,8 +15,8 @@ export interface Sale {
 }
 
 export interface Item {
-  name: string;
-  image: string;
+  title: string;
+  photo: string;
   description: string;
 }
 
@@ -25,6 +25,8 @@ export interface Item {
 })
 export class ApiService {
   private API_URL = environment.API_URL;
+  private itemsSubject = new BehaviorSubject<any[]>([]);
+  items$ = this.itemsSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -46,5 +48,20 @@ export class ApiService {
 
   deleteSale(id: string) {
     return this.http.delete(`${this.API_URL}/sales/${id}`);
+  }
+
+  updateSale(id: string, saleData: any) {
+    return this.http.put(`${this.API_URL}/sales/${id}`, {
+      ...saleData,
+      createdBy: saleData.createdBy,
+    });
+  }
+
+  addItem(formdata: any) {
+    return this.http.post(`${this.API_URL}/items/0`, formdata, {
+      headers: new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+      }),
+    });
   }
 }

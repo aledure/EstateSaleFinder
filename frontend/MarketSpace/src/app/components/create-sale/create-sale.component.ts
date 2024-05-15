@@ -1,11 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../../shared/services/api.service';
-import { UserService, User } from 'src/app/shared/services/user.service';
-import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
-import { AddItemFormComponent } from '../add-item-form/add-item-form.component';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { AddItemFormComponent } from '../add-item-form/add-item-form.component';
+import { ApiService } from 'src/app/shared/services/api.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-create-sale',
@@ -14,16 +15,15 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CreateSaleComponent implements OnInit, OnDestroy {
   createSaleForm!: FormGroup;
-  currentUser: User | null = null;
   private unsubscribe$ = new Subject<void>();
-  isLoggedIn: boolean = false;
+  items: any[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private apiService: ApiService,
-    private userService: UserService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private apiService: ApiService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -32,20 +32,11 @@ export class CreateSaleComponent implements OnInit, OnDestroy {
       description: ['', Validators.required],
       date: ['', Validators.required],
       address: ['', Validators.required],
+      items: this.fb.array([]),
+      createdBy: [''],
     });
 
-    this.userService.isAuthenticated().subscribe((isAuthenticated) => {
-      this.isLoggedIn = isAuthenticated;
-      console.log('Is user logged in:', this.isLoggedIn);
-      if (isAuthenticated) {
-        this.userService.currentUser.subscribe((user) => {
-          if (user !== undefined) {
-            this.currentUser = user;
-            console.log('Current user:', this.currentUser);
-          }
-        });
-      }
-    });
+    this.setUser();
   }
 
   ngOnDestroy(): void {
@@ -54,15 +45,11 @@ export class CreateSaleComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log('Submit button clicked.');
+    if (this.createSaleForm.valid) {
+      console.log('Form is valid.');
 
-    if (this.createSaleForm.valid && this.currentUser !== null) {
-      console.log('Form is valid and current user is available.');
-
-      const createdBy = this.currentUser.id;
-      const saleData = { ...this.createSaleForm.value, createdBy };
+      const saleData = this.createSaleForm.value;
       console.log('Submitting sale data:', saleData);
-      console.log('form value: ', this.createSaleForm.value);
 
       this.apiService.createSale(saleData).subscribe(
         (response) => {
@@ -73,8 +60,6 @@ export class CreateSaleComponent implements OnInit, OnDestroy {
           console.error('Error creating sale:', error);
         }
       );
-    } else {
-      console.error('User data not available');
     }
   }
 
@@ -82,5 +67,32 @@ export class CreateSaleComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(AddItemFormComponent, {
       width: '400px',
     });
+
+    dialogRef.afterClosed().subscribe((newItemFormValue: any) => {
+      if (newItemFormValue) {
+        console.log('Received item form value:', newItemFormValue);
+        this.apiService.addItem(newItemFormValue).subscribe();
+      }
+      // if (newItemFormValue) {
+      //   const items = this.createSaleForm.get('items') as FormArray;
+      //   items.push(this.fb.group(newItemFormValue));
+      // }
+    });
+  }
+
+  setUser(): void {
+    this.userService.currentUser
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((user) => {
+        if (user) {
+          this.createSaleForm.patchValue({
+            createdBy: user.id,
+          });
+        }
+      });
+  }
+
+  get saleItems(): FormArray {
+    return this.createSaleForm.get('items') as FormArray;
   }
 }

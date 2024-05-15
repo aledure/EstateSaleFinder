@@ -4,6 +4,7 @@ import { ItemImageModalComponent } from '../item-image-modal/item-image-modal.co
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { Router } from '@angular/router';
+import { EditSaleComponent } from '../edit-sale/edit-sale.component';
 
 @Component({
   selector: 'app-sale-detail',
@@ -38,6 +39,19 @@ export class SaleDetailComponent {
     this.dialog.open(ItemImageModalComponent, {
       data: { imageUrl },
       panelClass: 'full-screen-modal',
+    });
+  }
+
+  editSale() {
+    const id = this.route.snapshot.paramMap.get('id') ?? '';
+    const dialogRef = this.dialog.open(EditSaleComponent, {
+      data: { id, ...this.sale },
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed', result);
+      window.location.reload();
     });
   }
 

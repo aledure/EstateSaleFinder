@@ -25,6 +25,7 @@ import { BrowseSalesComponent } from './components/browse-sales/browse-sales.com
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { AddItemFormComponent } from './components/add-item-form/add-item-form.component';
+import { EditSaleComponent } from './components/edit-sale/edit-sale.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AddItemFormComponent } from './components/add-item-form/add-item-form.c
     RegisterComponent,
     BrowseSalesComponent,
     AddItemFormComponent,
+    EditSaleComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,6 +18,18 @@
       <div class="w-1/2 float-end">
         <mat-card-header>Items </mat-card-header>
         <mat-divider></mat-divider>
+
+
+        <div *ngFor="let item of saleItems.controls">
+          <div class="card">
+            <span>{{ item.value.name }}</span>
+            <span>{{ item.value.description }}</span>
+            <img src="{{ item.value.image }}" alt="">
+          </div>
+        </div>
+
+
+
         <button type="button" (click)="openDialog()" mat-raised-button color="warn" class="mt-4 add-item-button">Add
           Item</button>
       </div>

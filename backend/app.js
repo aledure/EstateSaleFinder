@@ -4,6 +4,7 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const bodyParser = require('body-parser');
 
 app.use(
   cors({
@@ -35,8 +36,11 @@ const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
 app.use(express.static("./images"));
-app.use(express.json());
+app.use(express.json({
+  limit: "50mb",
+}));
 app.use(fileUpload({ useTempFiles: true }));
+app.use(express.urlencoded({ extended: true }))
 
 // routes
 app.get("/", (req, res) => {

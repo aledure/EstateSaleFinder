@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap, tap } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 
 export interface User {
@@ -34,10 +34,19 @@ export class UserService {
     private httpClient: HttpClient,
     private cookieService: CookieService,
     private router: Router
-  ) {}
+  ) {
+    // Check if user is logged in on initialization
+    const user = this.getUserFromLocalStorage();
+    if (user) {
+      this.user$.next(user);
+    }
+  }
 
-  setUser({ id, username }: User) {
-    this.user$.next({ id, username });
+  setUser(user: User) {
+    // Update behavior subject
+    this.user$.next(user);
+    // Save user to local storage
+    this.saveUserToLocalStorage(user);
   }
 
   register({ username, email, password }: CreateUser) {
@@ -64,6 +73,9 @@ export class UserService {
         tap(({ user, token }) => {
           this.cookieService.set('token', token, { expires: 1 });
           this.setUser(user);
+        }),
+        switchMap(() => {
+          return this.router.navigate(['home']); // Navigate after user is set
         })
       );
   }
@@ -77,5 +89,18 @@ export class UserService {
   isAuthenticated(): Observable<boolean> {
     const token = this.cookieService.get('token');
     return of(!!token);
+  }
+
+  private saveUserToLocalStorage(user: User) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+
+  private getUserFromLocalStorage(): User | null {
+    const userString = localStorage.getItem('currentUser');
+    return userString ? JSON.parse(userString) : null;
+  }
+
+  private clearUserFromLocalStorage() {
+    localStorage.removeItem('currentUser');
   }
 }
