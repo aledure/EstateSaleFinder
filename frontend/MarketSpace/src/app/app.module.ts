@@ -26,6 +26,7 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { AddItemFormComponent } from './components/add-item-form/add-item-form.component';
 import { EditSaleComponent } from './components/edit-sale/edit-sale.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { EditSaleComponent } from './components/edit-sale/edit-sale.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSidenavModule,
   ],
   providers: [
     CookieService,

@@ -1,3 +1,36 @@
 .poppins {
   font-family: "Poppins", sans-serif;
 }
+
+@media screen and (max-width: 768px) {
+  .hidden.md\:block {
+    display: none !important; /* Hide the input and button on smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .w-5,
+  .h-5 {
+    width: 20px; /* Adjust size of the SVG icon for smaller screens */
+    height: 20px;
+  }
+
+  .mat-toolbar-row {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: center;
+    margin-bottom: 10px; /* Add some bottom margin for spacing */
+  }
+
+  .w-1\/2 {
+    width: 90% !important; /* Adjust input width for smaller screens */
+  }
+
+  .ml-2 {
+    margin-left: 5px !important; /* Adjust margin for the button */
+  }
+
+  a.mat-button {
+    font-size: 14px; /* Decrease font size of buttons on smaller screens */
+    padding: 8px 12px; /* Adjust padding for buttons */
+  }
+}

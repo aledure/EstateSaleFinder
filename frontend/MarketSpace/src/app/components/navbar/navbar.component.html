@@ -1,4 +1,4 @@
-<mat-toolbar color="warn" class="font-Poppins poppins">
+<mat-toolbar color="warn" class="font-Poppins poppins main">
   <mat-toolbar-row class="flex justify-between">
     <span class="flex items-center">
       <span><a href="/">MarketSpace</a></span>
@@ -14,7 +14,7 @@
     </span>
 
     <span class="flex items-center">
-      <a *ngIf="isLoggedIn" mat-button routerLink="/create" (click)="newSale()" class="ml-2">Create A Sale</a>
+      <a *ngIf="isLoggedIn" mat-button routerLink="/create" (click)="newSale()">Create A Sale</a>
       <span *ngIf="isLoggedIn"> | </span>
       <a href="/sales" mat-button>Find a Sale</a> |
       <a *ngIf="!isLoggedIn" mat-button routerLink="/login">Login</a>
