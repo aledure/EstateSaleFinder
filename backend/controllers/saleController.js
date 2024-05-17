@@ -19,6 +19,7 @@ const createSale = async (req, res) => {
         throw new BadRequestError("createdBy field is required");
     }
 
+
     const sale = await Sale.create({ title, description, address, date, items, createdBy });
     res.status(StatusCodes.CREATED).json({ message: "Sale created successfully", sale });
 };
@@ -45,7 +46,7 @@ const updateSale = async (req, res) => {
     validateFields({ title, description, address, date });
 
     const { id: saleId } = req.params;
-    const createdBy = req.user.id;
+    const createdBy = req.user.userId;
 
     const sale = await Sale.findByIdAndUpdate(
         saleId,

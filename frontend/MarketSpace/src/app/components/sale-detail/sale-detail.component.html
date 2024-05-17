@@ -12,11 +12,9 @@
     </mat-card-content>
   </mat-card-subtitle>
 
-
   <!---->
 
   <mat-card-footer class="flex justify-between">
-
     <mat-card-content>
       <h4>Date: </h4>
       <p>{{ sale.date | date }}</p>
@@ -26,7 +24,6 @@
       <h4 class="pt-4">Location:</h4>
       <p>{{ sale.address }}</p>
     </mat-card-content>
-
   </mat-card-footer>
 
   <!---->
@@ -39,9 +36,9 @@
   <mat-card-content>
     <div class="gallery">
       <div class="card bg-green bg-opacity-10 hover:scale-105" *ngFor="let item of sale.items">
-        <div class="card-link" (click)="openItemModal(item.imageUrl)">
-          <h3>{{ item.name }}</h3>
-          <img [src]="item.imageUrl" alt="item image" class="rounded-md">
+        <div class="card-link" (click)="openItemModal(item.photo)">
+          <h3>{{ item.title }}</h3>
+          <img [src]="item.photo" alt="item image" class="rounded-md">
         </div>
       </div>
     </div>
@@ -50,8 +47,7 @@
   <mat-divider></mat-divider>
 
   <mat-card-actions class="mx-auto">
-    <button mat-raised-button color="warn" class="mr-2">Edit</button>
+    <button mat-raised-button color="warn" (click)="editSale()" class="mr-2">Edit</button>
     <button mat-raised-button color="warn" (click)="deleteSale()">Delete</button>
   </mat-card-actions>
-
 </mat-card>

@@ -1,0 +1,23 @@
+<mat-card class="w-full pt-4 flex justify-center align-middle text-center">
+  <form [formGroup]="editSaleForm" class="flex justify-center align-middle w-100 mx-auto flex-col w-full">
+    <mat-card-title class="w-100 mx-auto bg-green p-2 bg-opacity-15 title-center">{{editedSale.title}}</mat-card-title>
+    <mat-card-content class="pt-2">
+      <input formControlName="description" class="border-2 p-2 w-full h-40 mt-2" [placeholder]="editedSale.description"
+        required>
+      <input formControlName="date" class="border-2 p-2 w-full mt-2" [placeholder]="editedSale.date" required>
+      <input formControlName="address" class="border-2 p-2 w-full mt-2" [placeholder]="editedSale.address" required>
+      <h2 class="text-center pt-3">Items</h2>
+      <div formArrayName="items">
+        <div *ngFor="let item of itemControls; let i = index">
+          <mat-card class="w-1/4">
+            <input formControlName="{{i}}.name" class="border-2 p-2 w-full mt-2" placeholder="Item name" required>
+            <input formControlName="{{i}}.imageUrl" class="border-2 p-2 w-full mt-2" placeholder="Image URL" required>
+            <button mat-raised-button color="warn" class="w-10 mx-auto mt-2">Remove</button>
+          </mat-card>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <button type="submit" mat-raised-button color="warn" (click)="onSave()" class="mt-4">Save</button>
+    </mat-card-content>
+  </form>
+</mat-card>
