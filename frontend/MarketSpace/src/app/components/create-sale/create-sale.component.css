@@ -11,8 +11,29 @@
   transition: 0.3s;
 }
 
+.item-card {
+  width: 220px;
+  height: 200px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-image {
+  width: 200px;
+  height: auto;
+}
+
 .submit-button {
   width: 100%;
   text-align: center;
   margin-bottom: 2em;
+}
+
+.remove-button {
+  font-size: 12px;
 }

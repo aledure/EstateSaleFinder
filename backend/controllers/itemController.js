@@ -13,7 +13,6 @@ const validateFields = ({ title, description }) => {
 
 const createItem = async (req, res) => {
     console.log('Creating an item!');
-    console.log(req.body);
 
     validateFields(req.body);
     const { saleId } = req.params;
@@ -27,7 +26,7 @@ const createItem = async (req, res) => {
     }
 
     const item = await Item.create({ photo: imageUrl, saleId, ...req.body });
-    res.status(StatusCodes.CREATED).json({ message: "Item created successfully", item });
+    return res.status(StatusCodes.CREATED).json({ message: "Item created successfully", item });
 };
 
 const getAllItems = async (req, res) => {
@@ -64,4 +63,16 @@ const deleteItem = async (req, res) => {
     res.status(StatusCodes.OK).send(`Item with id ${itemId} deleted successfully`);
 };
 
-module.exports = { createItem, getAllItems, updateItem, deleteItem };
+const getItemById = async (req, res) => {
+    const { id: itemId } = req.params;
+    try {
+        const item = await Item.findById(itemId);
+        res.status(200).json(item); // Return the item details as JSON
+    } catch (error) {
+        console.error("Error fetching item by ID:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+
+module.exports = { createItem, getAllItems, updateItem, deleteItem, getItemById };

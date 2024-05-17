@@ -1,23 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ItemImageModalComponent } from '../item-image-modal/item-image-modal.component';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from 'src/app/shared/services/api.service';
+import { ApiService, Item } from 'src/app/shared/services/api.service';
 import { Router } from '@angular/router';
 import { EditSaleComponent } from '../edit-sale/edit-sale.component';
+import { ItemImageModalComponent } from '../item-image-modal/item-image-modal.component';
 
 @Component({
   selector: 'app-sale-detail',
   templateUrl: './sale-detail.component.html',
   styleUrls: ['./sale-detail.component.css'],
 })
-export class SaleDetailComponent {
-  sale = {
+export class SaleDetailComponent implements OnInit {
+  sale: any = {
     title: '',
     description: '',
     address: '',
     date: '',
-    items: [{ name: '', imageUrl: '' }],
+    items: [],
   };
 
   constructor(
@@ -32,6 +32,19 @@ export class SaleDetailComponent {
 
     this.apiService.getSaleById(id).subscribe((data: any) => {
       this.sale = data;
+      console.log('Sale:', this.sale);
+      this.fetchItemDetails();
+    });
+  }
+
+  fetchItemDetails() {
+    const itemPromises: Promise<Item>[] = this.sale.items.map(
+      (itemId: string) => this.apiService.getItemById(itemId).toPromise()
+    );
+
+    Promise.all(itemPromises).then((items: Item[]) => {
+      this.sale.items = items;
+      console.log('Sale with item details:', this.sale);
     });
   }
 
