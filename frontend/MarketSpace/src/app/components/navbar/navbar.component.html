@@ -10,15 +10,15 @@
 
     <span class="w-1/2 text-center hidden md:block">
       <input matInput placeholder="Search for a sale" class="w-1/2 p-2 text-sm rounded-md" />
-      <button mat-button class="ml-2">Search</button>
+      <button mat-button class="ml-2 hover-effect">Search</button>
     </span>
 
     <span class="flex items-center">
       <a *ngIf="isLoggedIn" mat-button routerLink="/create" class="ml-2">Create A Sale</a>
       <span *ngIf="isLoggedIn"> | </span>
-      <a href="/sales" mat-button>Find a Sale</a> |
-      <a *ngIf="!isLoggedIn" mat-button routerLink="/login">Login</a>
-      <a *ngIf="isLoggedIn" mat-button (click)="logout()">Logout</a>
+      <a href="/sales" mat-button class="sales-style hover-effect">Find a Sale</a> |
+      <a *ngIf="!isLoggedIn" mat-button routerLink="/login" class="login-style hover-effect">Login</a>
+      <a *ngIf="isLoggedIn" mat-button (click)="logout()" class="logout-style hover-effect">Logout</a>
     </span>
   </mat-toolbar-row>
 </mat-toolbar>

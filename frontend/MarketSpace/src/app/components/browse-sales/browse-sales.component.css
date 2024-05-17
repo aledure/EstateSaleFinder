@@ -3,10 +3,13 @@
   flex-wrap: wrap;
   padding: 25px;
   justify-content: flex;
-  background-image: url(https://images.unsplash.com/photo-1516160008198-e55b603e5da9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-image: url(https://images.unsplash.com/photo-1481184094322-6b9e783d91ea?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+  overflow: auto;
 }
 
 .card {
@@ -15,7 +18,7 @@
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   margin: 25px;
-  background-color: aliceblue;
+  background-color: rgb(255, 255, 255);
   width: 300px;
   height: 300px;
   display: flex;
@@ -43,7 +46,7 @@ input[type="text"] {
 h1 {
   text-align: center;
   padding-top: 20px;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -59,13 +62,14 @@ h1 {
   height: auto;
   text-align: center;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .card-text {
   width: auto;
   height: auto;
   padding: auto;
+  font-style: italic;
 }
 
 .btn-primary {
@@ -75,10 +79,12 @@ h1 {
   border-radius: 5px;
   text-align: center;
   transition: transform 0.3s ease-in-out;
+  background-color: beige;
+  font-weight: 500;
 }
 
 .btn-primary:hover {
-  background-color: #60f326;
+  background-color: #29da55;
   color: rgb(12, 12, 12);
   transform: scale(1.1);
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
@@ -94,6 +100,10 @@ h1 {
   height: auto;
   flex-direction: column;
   justify-content:center;
-  align-items: center; 
+  align-items: center;
   display: flex;
+}
+.cards-container {
+  position: relative;
+  z-index: 1;
 }
