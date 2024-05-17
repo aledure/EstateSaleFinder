@@ -37,7 +37,7 @@ export class LoginComponent {
           this.router.navigate(['home']);
           setTimeout(() => {
             window.location.reload();
-          }, 1000);
+          }, 500);
         }
       })
     );

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject, Observable, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 
 export interface User {
@@ -74,8 +74,8 @@ export class UserService {
           this.cookieService.set('token', token, { expires: 1 });
           this.setUser(user);
         }),
-        switchMap(() => {
-          return this.router.navigate(['home']); // Navigate after user is set
+        tap(() => {
+          this.router.navigate(['home']); // Navigate after user is set
         })
       );
   }

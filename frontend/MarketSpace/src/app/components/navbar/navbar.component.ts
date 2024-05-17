@@ -22,8 +22,9 @@ export class NavbarComponent implements OnInit {
     this.userService.isAuthenticated().subscribe((isAuthenticated) => {
       this.isLoggedIn = isAuthenticated;
     });
+
+    // Initialize user state
     this.userService.currentUser.subscribe((user) => {
-      console.log('Current user from navbar:', user);
       this.currentUser = user;
     });
   }
@@ -31,9 +32,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.userService.logout();
     this.router.navigate(['/login']);
-    setTimeout(() => {
-      window.location.reload();
-    }, 500);
+    window.location.reload();
   }
 
   newSale() {
