@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  API_URL: 'marketspacebackend.vercel.app/api/v1',
+  API_URL: 'https://estatesalefinder.onrender.com',
 };
