@@ -8,6 +8,8 @@ import { environment } from 'src/app/environments/environment';
 export interface User {
   id: number;
   username: string;
+  email: string;
+  emailVerified: boolean;
 }
 
 export interface CreateUser {

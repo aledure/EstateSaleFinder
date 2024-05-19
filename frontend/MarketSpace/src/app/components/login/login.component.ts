@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService, LoginUser } from 'src/app/shared/services/user.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-
+import { NavbarComponent } from '../navbar/navbar.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

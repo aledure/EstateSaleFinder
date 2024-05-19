@@ -25,6 +25,11 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Please provide password"],
     minlength: 6,
   },
+  verificationToken: String,
+  emailVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // PRESAVE PASSWORD HASHING
