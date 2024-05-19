@@ -77,7 +77,7 @@ export class UserService {
           this.setUser(user);
         }),
         tap(() => {
-          this.router.navigate(['home']); // Navigate after user is set
+          this.router.navigate(['home']);
         })
       );
   }
@@ -85,6 +85,7 @@ export class UserService {
   logout() {
     this.cookieService.delete('token');
     this.user$.next(null);
+    this.clearUserFromLocalStorage();
     this.router.navigate(['/']);
   }
 
