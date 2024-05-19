@@ -74,26 +74,30 @@ export class EditSaleComponent implements OnInit, OnDestroy {
   }
 
   onSave(): void {
-    const saleData = this.editSaleForm.value;
+    if (this.editSaleForm.valid) {
+      const saleData = this.editSaleForm.value;
+      const saleId = saleData.id;
 
-    const saleId = saleData.id;
+      console.log('Updating sale:', saleData);
 
-    console.log('Updating sale:', saleData);
-
-    this.apiService.updateSale(saleId, saleData).subscribe(
-      (response) => {
-        console.log('Sale updated successfully:', response);
-        this.dialogRef.close(saleData);
-      },
-      (error) => {
-        console.error('Error updating sale:', error);
-      }
-    );
+      this.apiService.updateSale(saleId, saleData).subscribe(
+        (response) => {
+          console.log('Sale updated successfully:', response);
+          this.dialogRef.close(saleData);
+        },
+        (error) => {
+          console.error('Error updating sale:', error);
+        }
+      );
+    } else {
+      console.error('Form is not valid. Cannot submit.');
+    }
   }
 
   private createItemFormGroup(item: Item): FormGroup {
     return this.formBuilder.group({
       name: [item.title],
+      description: [item.description],
       imageUrl: [item.photo],
     });
   }
@@ -108,6 +112,12 @@ export class EditSaleComponent implements OnInit, OnDestroy {
           console.log('Created by:', user.id);
         }
       });
+  }
+
+  removeItem(index: number) {
+    const itemsFormArray = this.editSaleForm.get('items') as FormArray;
+    itemsFormArray.removeAt(index);
+    console.log('Item removed at index:', index);
   }
 
   get itemControls() {

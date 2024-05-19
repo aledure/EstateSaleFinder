@@ -5,6 +5,8 @@ import { ApiService, Item } from 'src/app/shared/services/api.service';
 import { Router } from '@angular/router';
 import { EditSaleComponent } from '../edit-sale/edit-sale.component';
 import { ItemImageModalComponent } from '../item-image-modal/item-image-modal.component';
+import { UserService } from 'src/app/shared/services/user.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-sale-detail',
@@ -20,11 +22,16 @@ export class SaleDetailComponent implements OnInit {
     items: [],
   };
 
+  currentUserId: number | undefined;
+  isAuthor: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -33,8 +40,24 @@ export class SaleDetailComponent implements OnInit {
     this.apiService.getSaleById(id).subscribe((data: any) => {
       this.sale = data;
       console.log('Sale:', this.sale);
+      console.log('Sale author:', this.sale.createdBy);
+      this.checkAuthor();
       this.fetchItemDetails();
     });
+
+    this.userService.currentUser.subscribe((user) => {
+      if (user) {
+        this.currentUserId = user.id;
+        console.log('Current user ID:', this.currentUserId);
+      }
+    });
+  }
+
+  checkAuthor() {
+    if (this.currentUserId === this.sale.createdBy) {
+      this.isAuthor = true;
+      this.cdr.detectChanges(); // Manually trigger change detection
+    }
   }
 
   fetchItemDetails() {
