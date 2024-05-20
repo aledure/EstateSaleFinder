@@ -4,6 +4,8 @@ const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
 
 const uploadItemImage = async (files) => {
+    console.log('files: ', files)
+
     if (!files) {
         throw new CustomError.BadRequestError("No File Uploaded");
     }
