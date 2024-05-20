@@ -1,13 +1,14 @@
-.container {
+.main {
   background-image: url("./../../../assets/sale-table.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  padding: 20px;
+  height: 90vh;
+  width: 100vw;
 }
 
 .submit-button {
@@ -22,6 +23,51 @@
 
 mat-card {
   background-color: rgba(255, 255, 255, 0.789);
+}
+
+@media screen and (max-width: 768px) {
+  /* Adjustments for screens up to 768px width */
+
+  .main {
+    padding: 0 20px; /* Adjust container padding */
+  }
+
+  .form-div {
+    flex-direction: column; /* Stack input and button vertically */
+  }
+
+  .form-div input {
+    width: 100%; /* Make input full width */
+    margin-bottom: 10px; /* Add some bottom margin for spacing */
+  }
+
+  /* Adjust grid to stack cards vertically */
+  .grid {
+    grid-template-columns: 1fr; /* One column layout */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Adjustments for screens up to 480px width */
+  .main {
+    height: 75vh;
+  }
+
+  h1 {
+    font-size: 24px; /* Decrease font size of h1 */
+  }
+
+  p {
+    font-size: 14px; /* Decrease font size of paragraphs */
+  }
+
+  .h-52 {
+    height: auto; /* Allow cards to adjust height based on content */
+  }
+
+  .p-4 {
+    padding: 10px; /* Adjust padding of the heading */
+  }
 }
 @media (min-width: 100px) {
   .container {
