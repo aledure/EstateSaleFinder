@@ -4,11 +4,11 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 app.use(
   cors({
-    origin: "https://marketspace-five.vercel.app",
+    origin: "http://localhost:4200",
     credentials: true,
   })
 );
@@ -26,9 +26,9 @@ cloudinary.config({
 const connectDB = require("./db/connect");
 const authenticateUser = require("./middleware/authentication");
 // routers
-const userRouter = require("./routes/userRoute");
+
 const authRouter = require("./routes/auth");
-const userRouter = require("./routes/userRoute")
+const userRouter = require("./routes/userRoute");
 const itemRouter = require("./routes/itemRoute");
 const saleRouter = require("./routes/sale.route");
 const verifyEmailRouter = require("./routes/verifyEmail");
@@ -38,11 +38,13 @@ const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
 app.use(express.static("./images"));
-app.use(express.json({
-  limit: "50mb",
-}));
+app.use(
+  express.json({
+    limit: "50mb",
+  })
+);
 app.use(fileUpload({ useTempFiles: true }));
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.get("/", (req, res) => {

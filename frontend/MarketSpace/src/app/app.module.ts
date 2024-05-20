@@ -44,6 +44,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     VerifyEmailComponent,
     AddItemFormComponent,
     ProfileComponent,
+    EditSaleComponent,
   ],
   imports: [
     BrowserModule,
