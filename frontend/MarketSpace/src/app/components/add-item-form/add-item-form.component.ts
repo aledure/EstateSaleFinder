@@ -1,5 +1,4 @@
 
-import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, EventEmitter, OnInit, Output, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -16,15 +15,11 @@ export class AddItemFormComponent implements OnInit {
   addItemForm!: FormGroup;
   saleId: string;
 
-
-  constructor(public dialogRef: MatDialogRef<AddItemFormComponent>,private snackBar: MatSnackBar) {}
-
-  ngOnInit(): void {}
-
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
     public dialogRef: MatDialogRef<AddItemFormComponent>,
+    private snackbar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.saleId = data.saleId;
