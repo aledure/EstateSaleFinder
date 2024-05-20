@@ -26,6 +26,8 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AddItemFormComponent } from './components/add-item-form/add-item-form.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { AddItemFormComponent } from './components/add-item-form/add-item-form.c
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     CookieService,
