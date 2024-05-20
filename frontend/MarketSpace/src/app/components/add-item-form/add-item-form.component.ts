@@ -19,7 +19,7 @@ export class AddItemFormComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     public dialogRef: MatDialogRef<AddItemFormComponent>,
-    private snackbar: MatSnackBar,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.saleId = data.saleId;
