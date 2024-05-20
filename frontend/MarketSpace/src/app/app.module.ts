@@ -28,6 +28,8 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { AddItemFormComponent } from './components/add-item-form/add-item-form.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { EditSaleComponent } from './components/edit-sale/edit-sale.component';
+import { MatSidenavModule } from '@angular/material/sidenav';>>>>>>> main
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/p
     BrowseSalesComponent,
     VerifyEmailComponent,
     AddItemFormComponent,
+    EditSaleComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/p
     FormsModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
   ],
   providers: [
     CookieService,
