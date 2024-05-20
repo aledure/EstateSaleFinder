@@ -29,7 +29,7 @@ import { AddItemFormComponent } from './components/add-item-form/add-item-form.c
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { EditSaleComponent } from './components/edit-sale/edit-sale.component';
-import { MatSidenavModule } from '@angular/material/sidenav';>>>>>>> main
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
