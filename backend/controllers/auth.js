@@ -15,7 +15,7 @@ const sendVerificationEmail = async (email, verificationToken) => {
     subject: "MarketSpace Email Verification",
     html: `
       <p>Please click the following link to verify your email address:</p>
-      <a href="${process.env.VERIFICATION_URL}api/verify-email?token=${verificationToken}">Verify Email</a>
+      <a href="${process.env.VERIFICATION_URL}verify-email?token=${verificationToken}">Verify Email</a>
     `,
   };
 
@@ -89,13 +89,13 @@ const login = async (req, res) => {
 
   // Compare Password
   const isPasswordCorrect = await user.comparePassword(password);
-
+  console.log("password being compared");
   if (!isPasswordCorrect) {
     throw new UnauthenticatedError("Invalid Credentials");
   }
 
   const token = user.createJWT();
-
+  console.log("jwt created");
   res.status(StatusCodes.OK).json({
     user: {
       id: user._id,

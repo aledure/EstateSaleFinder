@@ -16,9 +16,7 @@ export class VerifyEmailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private emailVerificationService: EmailVerificationService,
-    private router: Router,
-    private userService: UserService
+    private emailVerificationService: EmailVerificationService
   ) {}
 
   ngOnInit() {
@@ -37,34 +35,13 @@ export class VerifyEmailComponent implements OnInit {
         .verifyEmail(this.verificationToken)
         .subscribe(
           (response: any) => {
-            if (response.status === 200) {
-              this.updateUserData(response.body.user);
-              this.redirectToHome(response.body.user.email);
-            } else {
-              this.error = response.body.message;
-            }
+            console.log('response', response);
+            this.isVerified = true;
           },
           (error) => {
             this.error = error.error.message;
           }
         );
-    }
-  }
-
-  updateUserData(updatedUser: any) {
-    this.userService.setUser({
-      id: updatedUser.id,
-      username: updatedUser.username,
-      email: updatedUser.email,
-      emailVerified: updatedUser.emailVerified,
-    });
-  }
-
-  redirectToHome(email: string | null) {
-    if (email) {
-      this.router.navigate(['/home'], { queryParams: { email: email } });
-    } else {
-      this.router.navigate(['/home']);
     }
   }
 }

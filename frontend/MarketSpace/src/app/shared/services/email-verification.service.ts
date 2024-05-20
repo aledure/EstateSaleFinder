@@ -8,8 +8,8 @@ export class EmailVerificationService {
   constructor(private http: HttpClient) {}
 
   verifyEmail(verificationToken: string) {
-    return this.http.get(`/api/verify-email?token=${verificationToken}`, {
-      observe: 'response',
-    });
+    return this.http.get(
+      `https://estatesalefinder.onrender.com/api/verify-email?token=${verificationToken}`
+    );
   }
 }

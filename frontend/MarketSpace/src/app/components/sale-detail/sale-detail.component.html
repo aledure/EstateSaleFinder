@@ -2,12 +2,15 @@
   <mat-card-header class="bg-green rounded-md">
     <mat-card-title>
       <h1 class="pl-4">{{ sale.title }}</h1>
+      <p>By {{ sale.createdBy }}</p>
     </mat-card-title>
   </mat-card-header>
 
   <mat-card-subtitle>
     <h2 class="text-center pt-4 text-red">Details</h2>
-    <mat-card-content class="bg-green bg-opacity-5 m-8 w-3/4 mx-auto rounded-sm">
+    <mat-card-content
+      class="bg-green bg-opacity-5 m-8 w-3/4 mx-auto rounded-sm"
+    >
       <h4 class="text-center pt-3">{{ sale.description }}</h4>
     </mat-card-content>
   </mat-card-subtitle>
@@ -16,7 +19,7 @@
 
   <mat-card-footer class="flex justify-between">
     <mat-card-content>
-      <h4>Date: </h4>
+      <h4>Date:</h4>
       <p>{{ sale.date | date }}</p>
     </mat-card-content>
 
@@ -35,10 +38,13 @@
   </mat-card-subtitle>
   <mat-card-content>
     <div class="gallery">
-      <div class="card bg-green bg-opacity-10 hover:scale-105" *ngFor="let item of sale.items">
+      <div
+        class="card bg-green bg-opacity-10 hover:scale-105"
+        *ngFor="let item of sale.items"
+      >
         <div class="card-link" (click)="openItemModal(item.photo)">
           <h3>{{ item.title }}</h3>
-          <img [src]="item.photo" alt="item image" class="rounded-md">
+          <img [src]="item.photo" alt="item image" class="rounded-md" />
         </div>
       </div>
     </div>
@@ -47,7 +53,11 @@
   <mat-divider></mat-divider>
 
   <mat-card-actions class="mx-auto" *ngIf="isAuthor">
-    <button mat-raised-button color="warn" (click)="editSale()" class="mr-2">Edit</button>
-    <button mat-raised-button color="warn" (click)="deleteSale()">Delete</button>
+    <button mat-raised-button color="warn" (click)="editSale()" class="mr-2">
+      Edit
+    </button>
+    <button mat-raised-button color="warn" (click)="deleteSale()">
+      Delete
+    </button>
   </mat-card-actions>
 </mat-card>
