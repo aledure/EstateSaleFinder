@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/app/environments/environment';
 
 export interface Sale {
   id: string;
@@ -26,7 +26,7 @@ export interface Item {
   providedIn: 'root',
 })
 export class ApiService {
-  private API_URL = environment.API_URL;
+  private API_URL = environment.API_URL + '/api/v1';
   private saleIdSubject = new BehaviorSubject<string | null>(null);
   saleId$ = this.saleIdSubject.asObservable();
 

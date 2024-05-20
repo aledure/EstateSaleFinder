@@ -1,0 +1,10 @@
+{
+  "/estate-sale-api": {
+    "target": "https://estatesalefinder.onrender.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/estate-sale-api": ""
+    }
+  }
+}
