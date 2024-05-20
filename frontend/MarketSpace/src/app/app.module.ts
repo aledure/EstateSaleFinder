@@ -49,6 +49,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     VerifyEmailComponent,
     AddItemFormComponent,
     ProfileComponent,
+    EditSaleComponent,
   ],
   imports: [
     BrowserModule,
