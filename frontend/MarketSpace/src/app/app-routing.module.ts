@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { BrowseSalesComponent } from './components/browse-sales/browse-sales.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'sales', component: BrowseSalesComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
   { path: 'sale/:id', component: SaleDetailComponent },
+  { path: 'profile/:id', component: ProfileComponent },
 ];
 
 @NgModule({

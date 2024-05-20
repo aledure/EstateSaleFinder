@@ -26,6 +26,7 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AddItemFormComponent } from './components/add-item-form/add-item-form.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AddItemFormComponent } from './components/add-item-form/add-item-form.c
     BrowseSalesComponent,
     VerifyEmailComponent,
     AddItemFormComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

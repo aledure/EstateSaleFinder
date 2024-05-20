@@ -1,0 +1,17 @@
+<div>
+  <div *ngIf="user">
+    <p class="text-center py-10 text-4xl">{{ user.username }}'s Sales Page</p>
+  </div>
+
+  <div *ngIf="userSales.length > 0">
+    <h2>Sales</h2>
+    <ul>
+      <li *ngFor="let sale of userSales">
+        <h3>Title:{{ sale.title }}</h3>
+        <p>Description: {{ sale.description }}</p>
+        <p>Date: {{ sale.date }}</p>
+        <!-- You can add more details about the sale here -->
+      </li>
+    </ul>
+  </div>
+</div>
