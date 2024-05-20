@@ -52,6 +52,12 @@ export class ApiService {
     return this.http.delete(`${this.API_URL}/sales/${id}`);
   }
 
+  getSalesCreatedBy(userId: string) {
+    const url = `${this.API_URL}/api/v1/sales/createdBy/${userId}`;
+    console.log('Fetching sales URL:', url); // Add this line to log the URL
+    return this.http.get<Sale[]>(url);
+  }
+
   updateSale(id: string, saleData: any): Observable<any> {
     return this.http.put(`${this.API_URL}/sales/${id}`, saleData);
   }

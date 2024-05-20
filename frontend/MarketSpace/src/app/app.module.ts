@@ -27,9 +27,13 @@ import { CookieService } from 'ngx-cookie-service';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AddItemFormComponent } from './components/add-item-form/add-item-form.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {
+  ProgressSpinnerMode,
+  MatProgressSpinnerModule,
+} from '@angular/material/progress-spinner';
 import { EditSaleComponent } from './components/edit-sale/edit-sale.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     BrowseSalesComponent,
     VerifyEmailComponent,
     AddItemFormComponent,
-    EditSaleComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

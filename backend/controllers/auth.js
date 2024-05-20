@@ -15,7 +15,7 @@ const sendVerificationEmail = async (email, verificationToken) => {
     subject: "MarketSpace Email Verification",
     html: `
       <p>Please click the following link to verify your email address:</p>
-      <a href="${process.env.FRONTEND_URL}api/verify-email?token=${verificationToken}">Verify Email</a>
+      <a href="${process.env.VERIFICATION_URL}api/verify-email?token=${verificationToken}">Verify Email</a>
     `,
   };
 
@@ -100,9 +100,9 @@ const login = async (req, res) => {
     user: {
       id: user._id,
       name: user.name,
-      email: user.email
+      email: user.email,
     },
-    token
+    token,
   });
 };
 
