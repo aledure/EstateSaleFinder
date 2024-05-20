@@ -1,3 +1,5 @@
+
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, EventEmitter, OnInit, Output, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -17,6 +19,7 @@ export class AddItemFormComponent implements OnInit {
     private fb: FormBuilder,
     private apiService: ApiService,
     public dialogRef: MatDialogRef<AddItemFormComponent>,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.saleId = data.saleId;
@@ -51,4 +54,8 @@ export class AddItemFormComponent implements OnInit {
       this.addItemForm.get('photo')?.setValue(file);
     }
   }
-}
+  showSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+
+    });
+}};

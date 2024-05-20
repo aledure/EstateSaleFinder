@@ -26,6 +26,8 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AddItemFormComponent } from './components/add-item-form/add-item-form.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {ProgressSpinnerMode, MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { EditSaleComponent } from './components/edit-sale/edit-sale.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -59,6 +61,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
   ],
   providers: [
