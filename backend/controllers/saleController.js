@@ -53,7 +53,7 @@ const updateSale = async (req, res) => {
   validateFields({ title, description, address, date });
 
   const { id: saleId } = req.params;
-  const createdBy = req.user.id;
+  const createdBy = req.user.userId;
 
   const sale = await Sale.findByIdAndUpdate(
     saleId,
