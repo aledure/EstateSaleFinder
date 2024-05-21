@@ -1,0 +1,59 @@
+<div class="section">
+  <div class="container">
+    <div class="content-section">
+      <div class="title">
+        <h1>About Us</h1>
+      </div>
+      <div class="content">
+        <h3>
+          Welcome to MarketSpace, your trusted partner for professional estate
+          sales and liquidation services. With a passion for helping clients
+          navigate life’s transitions, we specialize in turning treasured
+          collections into valuable assets. Our team of experienced
+          professionals is dedicated to providing compassionate, efficient, and
+          comprehensive estate sale solutions tailored to meet your unique
+          needs.
+        </h3>
+        <h2>Our Mission</h2>
+        <p>
+          At MarketSpace, our mission is to offer seamless and stress-free
+          estate sale experiences. We understand that every estate tells a
+          story, and we are committed to preserving the legacy of your
+          belongings while maximizing their value. Whether you are downsizing,
+          relocating, or managing the estate of a loved one, we are here to
+          support you every step of the way.
+        </p>
+        <h4>What we Offer</h4>
+        <h5>
+          Comprehensive Estate Sales: From initial consultation to final sale,
+          we handle every aspect of the estate sale process. Our services
+          include pricing, staging, marketing, and conducting the sale.
+          Appraisals: Our team provides expert appraisals to ensure you receive
+          fair market value for your items. Clean-Out Services: After the sale,
+          we offer clean-out services to leave the property in excellent
+          condition. Online Sales: Leveraging technology, we also provide online
+          estate sales to reach a broader audience and achieve optimal results.
+        </h5>
+        <h6>Meet Our Team</h6>
+        <div>
+          Our team is composed of dedicated professionals with diverse
+          backgrounds in antiques, collectibles, appraisals, and customer
+          service. We take pride in our work and are passionate about helping
+          our clients achieve the best outcomes.
+        </div>
+
+        <div class="image-section">
+          <img src="assets/images/codefi.jpeg" alt="" />
+          <!-- </div>
+        <div class="button"><a href=""> Read More </a></div>
+      </div> -->
+          <!-- <div class="social">
+        <a href=""><i class="fab fa-facebook"></i></a>
+        <a href=""><i class="fab fa-twitter"></i></a>
+        <a href=""><i class="fab fa-instagram"></i></a>
+      </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
