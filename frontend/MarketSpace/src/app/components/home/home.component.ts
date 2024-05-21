@@ -17,7 +17,7 @@ export class HomeComponent {
   ) {}
 
   ngOnInit() {
-    this.apiService.getSales().subscribe((data: any) => {
+    this.apiService.getSales().subscribe((data: Sale[]) => {
       this.sales = data;
     });
 

@@ -31,7 +31,7 @@ export class SaleDetailComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private userService: UserService,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {

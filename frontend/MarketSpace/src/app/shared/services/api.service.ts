@@ -12,7 +12,7 @@ export interface Sale {
   address: string;
   image: string;
   date: string;
-  items: Item[];
+  items: string[];
 }
 
 export interface Item {
