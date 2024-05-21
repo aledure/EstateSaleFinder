@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 
 app.use(
   cors({
-    origin: "http://localhost:4200",
+    origin: "https://marketspace-five.vercel.app",
     credentials: true,
   })
 );
