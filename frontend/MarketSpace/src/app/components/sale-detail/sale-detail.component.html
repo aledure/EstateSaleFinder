@@ -2,7 +2,12 @@
   <mat-card-header class="bg-green rounded-md">
     <mat-card-title>
       <h1 class="pl-4">{{ sale.title }}</h1>
-      <p>By {{ sale.createdBy }}</p>
+      <p>
+        By
+        <a [routerLink]="['/profile', getUsernameById(sale.createdBy)]">{{
+          getUsernameById(sale.createdBy)
+        }}</a>
+      </p>
     </mat-card-title>
   </mat-card-header>
 

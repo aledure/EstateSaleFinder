@@ -1,21 +1,32 @@
 <div>
   <div *ngIf="user">
     <p class="text-center py-10 text-4xl">{{ user.username }}'s Sales Page</p>
+    <p class="text-center py-10 text-4xl">
+      Contact {{ user.username }} at {{ user.email }}!
+    </p>
   </div>
 
   <div *ngIf="userSales.length > 0">
     <h2>Sales</h2>
-    <ul>
-      <li *ngFor="let sale of userSales">
-        <h3>Title:{{ sale.title }}</h3>
-        <p>Description: {{ sale.description }}</p>
-        <p>Date: {{ sale.date }}</p>
-        <hr />
-        <!-- You can add more details about the sale here -->
-      </li>
-    </ul>
-    <p class="text-center py-10 text-4xl">
-      Contact {{ user.username }} at {{ user.email }}!
-    </p>
+    <div class="container bg-green bg-opacity-15 font-Poppins">
+      <div class="cards-container flex flex-wrap justify-around">
+        <div class="col-span-1" *ngFor="let sale of userSales">
+          <div class="card">
+            <h5 class="card-title">{{ sale.title }}</h5>
+            <img
+              class="card-img-top"
+              src="https://res.cloudinary.com/dk3ejz11f/image/upload/v1716142653/estateSaleFinder/tmp-3-1716142652166_znqd6t.jpg"
+              alt="sale item image"
+            />
+            <div class="card-body">
+              <p class="card-text">{{ sale.description }}</p>
+              <a href="/sale/{{ sale._id }}" mat-raised-button color="warn"
+                >View Sale</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

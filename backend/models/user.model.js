@@ -34,9 +34,23 @@ const UserSchema = new mongoose.Schema({
 });
 
 // PRESAVE PASSWORD HASHING
-UserSchema.pre("save", async function () {
+
+// UserSchema.pre("save", async function () {
+//   console.log("User object before hashing:", this);
+//   const salt = await bcrypt.genSalt(10);
+//   this.password = await bcrypt.hash(this.password, salt);
+// }); ORIGINAL
+
+UserSchema.pre("save", async function (next) {
+  console.log("UserSchema.pre('save') hook called");
+  if (!this.isModified("password")) {
+    console.log("Password not modified, skipping hash");
+    return next();
+  }
+  console.log("User object before hashing:", this);
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
+  next();
 });
 
 // GENERATE JWT WITH SCHEMA METHODS
@@ -53,6 +67,8 @@ UserSchema.methods.createJWT = function () {
 // COMPARE INCOMING PASSWORD TO HASHED FOR VALIDITY
 
 UserSchema.methods.comparePassword = async function (canditatePassword) {
+  // console.log("Candidate password:", canditatePassword);
+  // console.log("Hashed password from database:", this.password);
   const isMatch = await bcrypt.compare(canditatePassword, this.password);
   return isMatch;
 };

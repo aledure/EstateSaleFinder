@@ -32,10 +32,14 @@ const sendVerificationEmail = async (email, verificationToken) => {
 
 // Register Controller
 const register = async (req, res) => {
+  console.log("register controller called");
   const user = await User.create({ ...req.body });
+  console.log("user created");
   const verificationToken = crypto.randomBytes(40).toString("hex");
   user.verificationToken = verificationToken;
+  console.log("before user save");
   await user.save();
+  console.log("after user save");
   await sendVerificationEmail(user.email, verificationToken);
   const token = user.createJWT();
   res
@@ -60,7 +64,6 @@ const verifyEmail = async (req, res) => {
   user.emailVerified = true;
   user.verificationToken = null;
   const updatedUser = await user.save();
-
   console.log("User after update:", updatedUser);
 
   res
@@ -89,7 +92,8 @@ const login = async (req, res) => {
 
   // Compare Password
   const isPasswordCorrect = await user.comparePassword(password);
-  console.log("password being compared");
+  console.log("password being compared"); //DEBUGGING
+  console.log("Is password correct:", isPasswordCorrect); //DEBUGGING
   if (!isPasswordCorrect) {
     throw new UnauthenticatedError("Invalid Credentials");
   }

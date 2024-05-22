@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of, tap } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 
 export interface User {
@@ -92,6 +92,16 @@ export class UserService {
   isAuthenticated(): Observable<boolean> {
     const token = this.cookieService.get('token');
     return of(!!token);
+  }
+
+  getUserById(userId: string): Observable<User | null> {
+    const url = `${environment.API_URL}/api/v1/user/${userId}`;
+    return this.httpClient.get<User>(url).pipe(
+      catchError((error) => {
+        console.error('Error fetching user:', error);
+        return of(null);
+      })
+    );
   }
 
   private saveUserToLocalStorage(user: User) {

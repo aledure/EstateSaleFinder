@@ -5,7 +5,7 @@ import { ApiService, Item } from 'src/app/shared/services/api.service';
 import { Router } from '@angular/router';
 import { EditSaleComponent } from '../edit-sale/edit-sale.component';
 import { ItemImageModalComponent } from '../item-image-modal/item-image-modal.component';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService, User } from 'src/app/shared/services/user.service';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
@@ -102,5 +102,20 @@ export class SaleDetailComponent implements OnInit {
         console.error('Error deleting sale:', error);
       }
     );
+  }
+
+  getUsernameById(userId: string): string {
+    let username = '';
+    this.userService.getUserById(userId).subscribe(
+      (user: User | null) => {
+        if (user) {
+          username = user.username;
+        }
+      },
+      (error) => {
+        console.error('Error fetching user:', error);
+      }
+    );
+    return username;
   }
 }
