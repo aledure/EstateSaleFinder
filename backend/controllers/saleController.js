@@ -12,9 +12,8 @@ const validateFields = ({ title, description, address, date }) => {
 
 const createSale = async (req, res) => {
   validateFields(req.body);
-  const { title, description, address, date, items, createdBy } = req.body; // Include createdBy in destructuring
+  const { title, description, address, date, items, createdBy } = req.body;
 
-  // Optionally, you can validate if createdBy is provided
   if (!createdBy) {
     throw new BadRequestError("createdBy field is required");
   }
@@ -102,7 +101,7 @@ const getSalesCreatedBy = async (req, res) => {
   const { userId } = req.params;
   const sales = await Sale.find({ createdBy: userId })
     .sort({ date: -1 }) // Sort in descending order by date
-    .populate("createdBy", "username") // Optionally populate the createdBy field with the user's username
+    .populate("createdBy", "username")
     .exec();
 
   res.status(StatusCodes.OK).json(sales);

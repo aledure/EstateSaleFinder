@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmailVerificationService } from 'src/app/shared/services/email-verification.service';
-import { UserService } from 'src/app/shared/services/user.service'; // Import UserService
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-verify-email',

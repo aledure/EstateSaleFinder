@@ -32,14 +32,13 @@ const sendVerificationEmail = async (email, verificationToken) => {
 
 // Register Controller
 const register = async (req, res) => {
-  console.log("register controller called");
   const user = await User.create({ ...req.body });
-  console.log("user created");
+
   const verificationToken = crypto.randomBytes(40).toString("hex");
   user.verificationToken = verificationToken;
-  console.log("before user save");
+
   await user.save();
-  console.log("after user save");
+
   await sendVerificationEmail(user.email, verificationToken);
   const token = user.createJWT();
   res
@@ -50,7 +49,6 @@ const register = async (req, res) => {
 // Email Verificaiton Route Handler
 
 const verifyEmail = async (req, res) => {
-  console.log("verifyEmail called");
   const { token } = req.query;
   const user = await User.findOne({ verificationToken: token });
 
@@ -99,7 +97,7 @@ const login = async (req, res) => {
   }
 
   const token = user.createJWT();
-  console.log("jwt created");
+
   res.status(StatusCodes.OK).json({
     user: {
       id: user._id,
