@@ -38,7 +38,7 @@ const getAllSales = async (req, res) => {
 
 const getSaleById = async (req, res) => {
   const { id: saleId } = req.params;
-  const sale = await Sale.findById(saleId);
+  const sale = await Sale.findById(saleId).populate("createdBy", "username");
 
   if (!sale) {
     throw new NotFoundError(`No sale found with id ${saleId}`);

@@ -1,12 +1,12 @@
-<mat-card class="font-Poppins m-4 p-2">
+<mat-card class="font-Poppins m-4 p-2" *ngIf="sale">
   <mat-card-header class="bg-green rounded-md">
     <mat-card-title>
       <h1 class="pl-4">{{ sale.title }}</h1>
       <p>
         By
-        <a [routerLink]="['/profile', getUsernameById(sale.createdBy)]">{{
-          getUsernameById(sale.createdBy)
-        }}</a>
+        <a [routerLink]="['/profile', sale.createdBy._id]"
+          >{{ sale.createdBy.username }}
+        </a>
       </p>
     </mat-card-title>
   </mat-card-header>

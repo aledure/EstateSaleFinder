@@ -54,7 +54,7 @@ export class SaleDetailComponent implements OnInit {
   }
 
   checkAuthor() {
-    if (this.currentUserId === this.sale.createdBy) {
+    if (this.currentUserId === this.sale.createdBy._id) {
       this.isAuthor = true;
       this.cdr.detectChanges(); // Manually trigger change detection
     }
@@ -102,20 +102,5 @@ export class SaleDetailComponent implements OnInit {
         console.error('Error deleting sale:', error);
       }
     );
-  }
-
-  getUsernameById(userId: string): string {
-    let username = '';
-    this.userService.getUserById(userId).subscribe(
-      (user: User | null) => {
-        if (user) {
-          username = user.username;
-        }
-      },
-      (error) => {
-        console.error('Error fetching user:', error);
-      }
-    );
-    return username;
   }
 }
