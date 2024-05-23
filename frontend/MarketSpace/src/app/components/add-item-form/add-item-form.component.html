@@ -1,26 +1,34 @@
 <mat-card>
   <div class="flex justify-center align-middle w-100 mx-auto flex-col">
-    <mat-card-title class="w-100 mx-auto bg-green p-2 bg-opacity-15 title-center">Add Item</mat-card-title>
+    <mat-card-title
+      class="w-100 mx-auto bg-green p-2 bg-opacity-15 title-center"
+      >Add Item</mat-card-title
+    >
     <mat-card-content class="pt-2">
       <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
-        <input formControlName="name" class="border-2 p-2 w-full mt-2" placeholder="Product Name" required>
-        <input formControlName="description" class="border-2 p-2 w-full h-40 mt-2" placeholder="Description" required>
-        <input type="file" (change)="onFileChange($event)" class="mt-2">
-        <button type="submit" mat-raised-button color="warn" (click)="onSubmit()" class="mt-4">Add</button>
+        <input
+          formControlName="name"
+          class="border-2 p-2 w-full mt-2"
+          placeholder="Product Name"
+          required
+        />
+        <input
+          formControlName="description"
+          class="border-2 p-2 w-full h-40 mt-2"
+          placeholder="Description"
+          required
+        />
+        <input type="file" (change)="onFileChange($event)" class="mt-2" />
+        <button
+          type="submit"
+          mat-raised-button
+          color="warn"
+          (click)="onSubmit()"
+          class="mt-4"
+        >
+          Add
+        </button>
       </form>
     </mat-card-content>
   </div>
-
-<mat-form-field>
-  <mat-label>Message</mat-label>
-  <input matInput value='Item Added' #message>
-</mat-form-field>
-
-<mat-form-field>
-  <mat-label>Action</mat-label>
-  <input matInput value="Close" #action>
-</mat-form-field>
-
-<button mat-stroked-button (click)="showSnackBar(message.value, action.value)">Show snack-bar</button>
-
 </mat-card>
