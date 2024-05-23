@@ -30,6 +30,7 @@ import { AddItemFormComponent } from './components/add-item-form/add-item-form.c
 import { EditSaleComponent } from './components/edit-sale/edit-sale.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     AddItemFormComponent,
     ProfileComponent,
     EditSaleComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
