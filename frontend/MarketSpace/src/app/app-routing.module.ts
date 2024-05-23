@@ -9,9 +9,11 @@ import { BrowseSalesComponent } from './components/browse-sales/browse-sales.com
 import { AuthGuard } from './shared/guard/auth.guard';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'create/:saleId',
@@ -25,7 +27,6 @@ const routes: Routes = [
   { path: 'sale/:id', component: SaleDetailComponent },
   { path: 'profile/:id', component: ProfileComponent },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

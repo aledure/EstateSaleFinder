@@ -2,9 +2,14 @@
   <mat-toolbar-row class="flex justify-between">
     <span class="flex items-center">
       <span><a href="/">MarketSpace</a></span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-white ml-1" viewBox="0 0 448 512">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5 fill-white ml-1 z-10"
+        viewBox="0 0 448 512"
+      >
         <path
-          d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+          d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"
+        />
       </svg>
     </span>
 
@@ -14,11 +19,20 @@
     </span> -->
 
     <span class="flex items-center">
-      <a *ngIf="isLoggedIn" mat-button routerLink="/create" (click)="newSale()">Create A Sale</a>
+      <a *ngIf="isLoggedIn" mat-button routerLink="/create" (click)="newSale()"
+        >Create A Sale</a
+      >
       <span *ngIf="isLoggedIn"> | </span>
       <a href="/sales" mat-button>Find a Sale</a> |
       <a *ngIf="!isLoggedIn" mat-button routerLink="/login">Login</a>
       <a *ngIf="isLoggedIn" mat-button (click)="logout()">Logout</a>
+      <button
+        mat-button
+        routerLink="/about"
+        routerLinkActive="router-link-active"
+      >
+        About Us
+      </button>
     </span>
   </mat-toolbar-row>
 </mat-toolbar>
